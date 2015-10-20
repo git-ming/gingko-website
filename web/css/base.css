@@ -23,4 +23,7 @@ a:hover{
     top:0;
     right:0;
 }
+.user-info a{
+    line-height: 40px !important;
+}
 
