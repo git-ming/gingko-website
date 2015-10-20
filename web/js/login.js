@@ -4,8 +4,8 @@
 $(function(){
     $('.submit').click(function(){
         if(check()){
-            window.localStorage.setItem('username',encodeURIComponent($('input[name=username]').val()));
-            window.localStorage.setItem('password',encodeURIComponent($('input[name=password]').val()));
+            window.sessionStorage.setItem('username',encodeURIComponent($('input[name=username]').val()));
+            window.sessionStorage.setItem('password',encodeURIComponent($('input[name=password]').val()));
             $.ajax({
                 url:'/login',
                 type:'POST',

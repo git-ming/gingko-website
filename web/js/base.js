@@ -1,9 +1,13 @@
 /**
  * Created by Administrator on 2015/10/20.
  */
-window.username=window.localStorage.getItem('username');
-window.password=window.localStorage.getItem('password');
+window.username=window.sessionStorage.getItem('username');
+window.password=window.sessionStorage.getItem('password');
 
+$(function(){
+//    判断当前用户已登录
+
+});
 //头部需要加username的ajax
 function ajaxHeader(url,data,callback){
     $.ajax({
@@ -51,3 +55,4 @@ function ajaxRequest(url,data,callback){
         }
     });
 }
+
