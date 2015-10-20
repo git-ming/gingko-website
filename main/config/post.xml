@@ -1,0 +1,154 @@
+<post>
+    <solver name="login" url="/login" manager="control.UserManager" access="true">
+        <method name="loginUser">
+        </method>
+    </solver>
+    <solver name="register" url="/register" manager="control.UserManager" access="false">
+        <method name="register">
+            <data>username</data>
+            <data>password</data>
+        </method>
+    </solver>
+    <solver name="set motto" url="/setMotto" manager="control.UserManager" access="true">
+        <method name="setMotto">
+            <data>motto</data>
+        </method>
+    </solver>
+    <solver name="get motto" url="/getMotto" manager="control.UserManager" access="false">
+        <method name="getMotto">
+            <data>username</data>
+        </method>
+    </solver>
+    <solver name="use exist" url="/userExist" manager="control.UserManager" access="false">
+        <method name="userExist">
+            <data>username</data>
+        </method>
+    </solver>
+
+    <solver name="mark" url="/mark" manager="control.MarkManager" access="true">
+        <method name="markUser">
+            <data>aimUser</data>
+        </method>
+    </solver>
+    <solver name="unMark" url="/unMark" manager="control.MarkManager" access="true">
+        <method name="unMarkUser">
+            <data>aimUser</data>
+        </method>
+    </solver>
+    <solver name="is marked" url="/isMarked" manager="control.MarkManager" access="true">
+        <method name="isMarked">
+            <data>aimUser</data>
+        </method>
+    </solver>
+    <solver name="get marked list" url="/getMarkedList" manager="control.MarkManager" access="true">
+        <method name="getMarkedList"/>
+    </solver>
+    <solver name="get marked me list" url="/getMarkedMeList" manager="control.MarkManager" access="true">
+        <method name="getMarkedMeList"/>
+    </solver>
+
+    <solver name="add document" url="/addDocument" manager="control.BlogManager" access="true">
+        <method name="addDocument">
+            <data>title</data>
+            <data>body</data>
+            <data default="default">type</data>
+            <data default="100">preview</data>
+        </method>
+    </solver>
+    <solver name="get document" url="/getDocument" manager="control.BlogManager" access="false">
+        <method name="getDocument">
+            <data>id</data>
+        </method>
+    </solver>
+    <solver name="get document list by author" url="/getDocumentListByAuthor" manager="control.BlogManager" access="false">
+        <method name="getAuthorDocumentList">
+            <data>author</data>
+            <data default="1">page</data>
+        </method>
+    </solver>
+    <solver name="get document list by author size" url="/getDocumentListByAuthorSize" manager="control.BlogManager" access="false">
+        <method name="getAuthorDocumentListSize">
+            <data>author</data>
+        </method>
+    </solver>
+    <solver name="get document list by type" url="/getDocumentListByType" manager="control.BlogManager" access="false">
+        <method name="getTypeDocumentList">
+            <data>type</data>
+            <data default="1">page</data>
+        </method>
+    </solver>
+    <solver name="get document list by type size" url="/getDocumentListByTypeSize" manager="control.BlogManager" access="false">
+        <method name="getTypeDocumentListSize">
+            <data>type</data>
+        </method>
+    </solver>
+    <solver name="get document list by author and type" url="/getDocumentListByAuthorAndType" manager="control.BlogManager" access="false">
+        <method name="getAuthorTypeDocumentList">
+            <data>author</data>
+            <data>type</data>
+            <data default="1">page</data>
+        </method>
+    </solver>
+    <solver name="get document list by author and type size" url="/getDocumentListByAuthorAndTypeSize" manager="control.BlogManager" access="false">
+        <method name="getAuthorTypeDocumentListSize">
+            <data>author</data>
+            <data>type</data>
+        </method>
+    </solver>
+    <solver name="add reader" url="/addDocumentReader" manager="control.BlogManager" access="false">
+        <method name="addReader">
+            <data>id</data>
+        </method>
+    </solver>
+    <solver name="add reply" url="/reply" manager="control.BlogManager" access="true">
+        <method name="addReply">
+            <data>id</data>
+            <data>reply</data>
+        </method>
+    </solver>
+
+    <solver name="get message list" url="/getMessageList" manager="control.MessageManager" access="true">
+        <method name="getAllMessage"/>
+    </solver>
+    <solver name="get message" url="/getMessage" manager="control.MessageManager" access="true">
+        <method name="getMessage">
+            <data>id</data>
+        </method>
+    </solver>
+    <solver name="read message" url="/readMessage" manager="control.MessageManager" access="true">
+        <method name="readMessage">
+            <data>id</data>
+        </method>
+    </solver>
+    <solver name="read all message" url="/readAllMessage" manager="control.MessageManager" access="true">
+        <method name="readAllMessage" model="array">
+            <data>id</data>
+        </method>
+    </solver>
+    <solver name="send message" url="/sendMessage" manager="control.MessageManager" access="true">
+        <method name="addMessage">
+            <data>message</data>
+            <data>aim</data>
+            <data default="100">preview</data>
+        </method>
+    </solver>
+    <solver name="remove message" url="/removeMessage" manager="control.MessageManager" access="true">
+        <method name="removeMessage">
+            <data>id</data>
+        </method>
+    </solver>
+    <solver name="remove all message" url="/removeAllMessage" manager="control.MessageManager" access="true">
+        <method name="removeAllMessage" model="array">
+            <data>id</data>
+        </method>
+    </solver>
+
+    <solver name="check upload access" url="/checkUploadAccess" manager="control.ImageManager" access="true">
+        <method name="checkUploadAccess"/>
+    </solver>
+    <solver name="uploadImage" url="/uploadImage" manager="control.ImageManager" access="true">
+        <method name="uploadImage" model="file">
+            <data>image</data>
+        </method>
+    </solver>
+</post>

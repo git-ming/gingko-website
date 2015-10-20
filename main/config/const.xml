@@ -1,0 +1,4 @@
+<consts>
+    <const name="preview default" type="java.lang.Integer">100</const>
+    <const name="blog page size" type="java.lang.Integer">10</const>
+</consts>
