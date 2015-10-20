@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>攻略</title>
+
+    <link href="../libs/bootstrap.min.css" rel="stylesheet">
+    <link href="../libs/font-awesome.min.css" rel="stylesheet">
+    <link href="../libs/highlight/styles/default.css" rel="stylesheet"/>
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/strategy.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top " id="navigation" >
+    <div class="container ">
+        <div class="navbar-header">              <!--网站Logo-->
+            <a class="navbar-brand" href="#">银杏叶</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right user-info">
+            <li><a  href="login.html">登录</a></li>
+            <li><a  href="reg.html">注册</a></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" class="form-control"/>
+            </div>
+            <button type="button" class="btn btn-default">搜索</button>
+        </form>
+    </div>
+</nav>
+<div class="content">
+    <div class="content-header" >
+        <img src="../images/logo.png" alt=""/>
+        <h1><a href="home.html" class="nickName">昵称</a></h1>
+    </div>
+    <div class="blogEdit" >
+        <div class="blog-title">
+            <h3>文章标题</h3>
+            <select>
+                <option>原创</option>
+                <option>转载</option>
+                <option>日记</option>
+                <option>译文</option>
+            </select>
+            <input type="text"/>
+        </div>
+        <div class="su-toolbar" enctype="multipart/form-data">
+            <div class="tool-block su-tool-bold" title="Bold(Ctrl+B)" data-placement="top" data-toggle="tooltip">
+                <span class="glyphicon glyphicon-bold"></span>
+            </div>
+            <div class="tool-block su-tool-italic" title="Italic(Ctrl+I)" data-placement="top" data-toggle="tooltip">
+                <span class="glyphicon glyphicon-italic"></span>
+            </div>
+            <div class="tool-block su-tool-head" title="Header(Ctrl+H)" data-placement="top" data-toggle="tooltip">
+                <span class="glyphicon glyphicon-header"></span>
+            </div>
+            <div class="tool-block su-tool-link" title="Link(Ctrl+L)" data-placement="top" data-toggle="modal" data-target="#linkModal">
+                <span class="glyphicon glyphicon-link"></span>
+            </div>
+            <div class="tool-block su-tool-img" title="Image(Ctrl+G)" data-placement="top" data-toggle="tooltip" style="position: relative;">
+                <span class="glyphicon glyphicon-picture"></span>
+                <input type="file" class="upload">
+            </div>
+            <!--<div class="tool-block su-tool-list" title="List(Ctrl+U)" data-placement="top" data-toggle="tooltip">
+                <span class="glyphicon glyphicon-list"></span>
+            </div>
+            <div class="tool-block su-tool-orderlist" title="OrderList(Ctrl+O)" data-placement="top" data-toggle="tooltip">
+                <span class="glyphicon glyphicon-th-list"></span>
+            </div>-->
+            <div class="tool-block su-tool-code" title="Code(Ctrl+K)" data-placement="top" data-toggle="tooltip">
+                <span class="glyphicon glyphicon-asterisk"></span>
+            </div>
+            <!--<div class="tool-block su-tool-block" title="Quote(Ctrl+Q)" data-placement="top" data-toggle="tooltip">
+                <span class="glyphicon glyphicon-comment"></span>
+            </div>-->
+            <div class="tool-block su-tool-upload"  title="File Upload" data-placement="top" data-toggle="tooltip" style="position: relative;">
+                <span class="glyphicon glyphicon-upload" ></span>
+                <input type="file" class="upload">
+            </div>
+            <div class="tool-block su-tool-help" title="Help" data-placement="top" data-toggle="modal" data-target="#helpModal">
+                <span class="glyphicon glyphicon-info-sign"></span>
+            </div>
+        </div>
+        <div id="epiceditor">
+        </div>
+        <button type="button" class="btn submit">提交</button>
+    </div>
+</div>
+
+<div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="myModalLabel">插入链接</h2>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <span class="input-group-addon"><i class=" icon-link"></i></span>
+                    <input type="text" class="linkAddress form-control" placeholder="链接地址"/>
+                </div>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="icon-font"></i></span>
+                    <input type="text" class="linkFont form-control" placeholder="链接文本" />
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="confirm btn btn-primary" data-dismiss="modal">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="ModalLabel">使用说明</h2>
+            </div>
+            <div class="modal-body">
+                <ul class="list-group">
+                    <li class="list-group-item">加粗： **文本**</li>
+                    <li class="list-group-item">斜体：*文本*</li>
+                    <li class="list-group-item">标题：###文本</li>
+                    <li class="list-group-item">链接：</li>
+                    <li class="list-group-item">图片：</li>
+                    <li class="list-group-item">代码：`文本`</li>
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="confirm btn btn-primary" data-dismiss="modal">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../libs/jquery.min.js"></script>
+<script src="../libs/bootstrap.min.js"></script>
+<script src="../libs/EpicEditor/js/epiceditor.min.js"></script>
+<script src="../js/base.js"></script>
+<script src="../js/strategy.js"></script>
+</body>
+</html>

@@ -9,14 +9,5 @@ $(function(){
         $(this).tab('show');
     });
 
-    /*//Õº∆¨–≈œ¢
-    $('.tab-content img')
-        .mouseover(function(e){
-            event.stopPropagation();
-            $(this).parent().next().show();
-    })
-        .mouseleave(function(e){
-            event.stopPropagation();
-            $(this).parent().next().hide();
-    });*/
+
 });
