@@ -1,0 +1,11 @@
+#login{
+    width:400px;
+    background:#fff;
+    padding:30px 50px;
+    margin:100px auto;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+#login .input-group{
+    margin:20px 0;
+}

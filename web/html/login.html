@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+    <link href="../libs/bootstrap.min.css" rel="stylesheet">
+    <link href="../libs/font-awesome.min.css" rel="stylesheet">
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/login.css" rel="stylesheet">
+</head>
+<body>
+<div class="header navbar navbar-fixed-top" role="heading" >
+    <div class="container">
+        <div class="navbar-header">              <!--网站Logo-->
+            <a class="navbar-brand" href="#">银杏叶</a>
+        </div>
+        <form class="navbar-form navbar-left">    <!--查询功能-->
+            <div class="form-group">
+                <input class="form-control" type="text" />
+            </div>
+            <button class="btn btn-default"  type="button"><span class="icon-search"></span>&nbsp;查找</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right" >    <!--登录注册-->
+            <li><a  href="login.html" target="_blank" >登陆</a></li>
+            <li><a  href="reg.html" target="_blank" >注册</a></li>
+        </ul>
+    </div>
+</div>
+<div class="content">
+    <form id="login">
+        <h3>登录</h3>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="icon-user"></i></span>
+            <input type="text" name="username" class="form-control" placeholder="用户名"/>
+        </div>
+        <div class="input-group">
+            <span class="input-group-addon"><i class="icon-lock"></i></span>
+            <input type="password" name="password" class="form-control" placeholder="密码"/>
+        </div>
+        <button type="button" class="submit btn btn-primary">确认</button>
+        <p>没有账号？<a href="reg.html">立即注册</a></p>
+    </form>
+</div>
+</body>
+</html>
