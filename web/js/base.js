@@ -6,7 +6,13 @@ window.password=window.sessionStorage.getItem('password');
 
 $(function(){
 //    判断当前用户已登录
-
+    if(window.username&&window.password){
+        $('.user-info')
+            .html('<li><a href="#"><img src="../images/logo.png"><span class="badge">99</span></a></li>')
+            .css('position','relative');
+    }else{
+        $('.user-info').html('<li><a  href="login.html">登录</a></li><li><a href="reg.html">注册</a></li>');
+    }
 });
 //头部需要加username的ajax
 function ajaxHeader(url,data,callback){

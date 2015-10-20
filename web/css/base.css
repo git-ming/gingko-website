@@ -3,12 +3,24 @@
 .content{
     margin-top:50px;
 }
-h3{
-    border-bottom:1px solid #ddd;
-}
+
 
 a:hover{
     text-decoration: none;
 }
-
+/*顶部栏用户信息*/
+.user-info a{
+    padding:5px !important;
+}
+.user-info img{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+}
+.user-info .badge{
+    background:red;
+    position:absolute;
+    top:0;
+    right:0;
+}
 
