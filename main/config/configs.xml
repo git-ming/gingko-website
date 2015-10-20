@@ -1,0 +1,10 @@
+<model.config>
+    <type path="/db.xml">model.config.BlogDBConfig</type>
+    <type path="/returnCode.xml">model.config.ReturnCodeConfig</type>
+    <type path="/post.xml">model.config.PostConfig</type>
+    <type path="/showFileType.xml">model.config.ShowFileTypeConfig</type>
+    <type path="/access.xml">model.config.AccessConfig</type>
+    <type path="/lengthLimit.xml">model.config.LengthLimitConfig</type>
+    <type path="/clojure.xml">model.config.ClojureConfig</type>
+    <type path="/const.xml">model.config.ConstConfig</type>
+</model.config>

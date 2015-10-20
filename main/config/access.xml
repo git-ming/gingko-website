@@ -1,0 +1,16 @@
+<access>
+    <!--<class name="control.BlogManager">-->
+        <!--<method name="addDocument" filed="access">1</method>-->
+        <!--<method name="addDocument" filed="admin">1</method>-->
+        <!--<method name="addReply" filed="access">1</method>-->
+        <!--<method name="addReply" filed="admin">1</method>-->
+    <!--</class>-->
+    <!--<class name="control.UserManager">-->
+        <!--<method name="acceptUserRegister" filed="admin">1</method>-->
+    <!--</class>-->
+    <!--<class name="control.MessageManager">-->
+        <!--<method name="addMessage" filed="access">2</method>-->
+        <!--<method name="addMessage" filed="admin">2</method>-->
+        <!--<method name="getUserAllMessage" filed="admin">1</method>-->
+    <!--</class>-->
+</access>

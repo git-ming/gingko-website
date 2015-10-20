@@ -1,0 +1,8 @@
+<return>
+    <type id="accept">200</type>
+    <type id="not found">404</type>
+    <type id="forbidden">403</type>
+    <type id="conflict">402</type>
+    <type id="error head">400</type>
+    <type id="event fail">401</type>
+</return>
