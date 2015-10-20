@@ -1,11 +1,57 @@
+body{
+    background:#f5f5f5;
+}
+.header{
+    height:20px;
+    margin-top:100px;
+}
 #reg{
     width:400px;
     background:#fff;
     padding:30px 50px;
-    margin:100px auto;
+    margin:40px auto;
     border:1px solid #ccc;
     border-radius:5px;
 }
 #reg .input-group{
     margin:20px 0;
+}
+
+.submit{
+    width:298px;
+}
+
+.logo-header{
+    text-align:center;
+    line-height: 20px;
+    color:#66ccff;
+    animation: myfirst 1s;
+    -moz-animation: myfirst 1s;	/* Firefox */
+    -webkit-animation: myfirst 1s;	/* Safari ºÍ Chrome */
+    -o-animation: myfirst 1s;	/* Opera */
+}
+
+
+@keyframes myfirst
+{
+    from {font-size:24px;}
+    to {font-size:36px;}
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+    from {font-size:24px;}
+    to {font-size:36px;}
+}
+
+@-webkit-keyframes myfirst /* Safari ºÍ Chrome */
+{
+    from {font-size:24px;}
+    to {font-size:36px;}
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+    from {font-size:24px;}
+    to {font-size:36px;}
 }
