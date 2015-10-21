@@ -29,111 +29,74 @@
     </div>
 </nav>
 <div class="content">
-    <div class="content-header" >
-        <img src="../images/logo.png" alt=""/>
-        <h1><a href="home.html" class="nickName">昵称</a></h1>
-    </div>
-    <div class="blogEdit" >
-        <div class="blog-title">
-            <h3>文章标题</h3>
-            <select>
-                <option>原创</option>
-                <option>转载</option>
-                <option>日记</option>
-                <option>译文</option>
-            </select>
-            <input type="text"/>
+    <div class="content-left">
+        <!--搜索框-->
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" />
+            <span class="input-group-btn">
+                <input type="button" class="btn btn-default web-style" value="go" placeholder="搜攻略..."/>
+            </span>
         </div>
-        <div class="su-toolbar" enctype="multipart/form-data">
-            <div class="tool-block su-tool-bold" title="Bold(Ctrl+B)" data-placement="top" data-toggle="tooltip">
-                <span class="glyphicon glyphicon-bold"></span>
-            </div>
-            <div class="tool-block su-tool-italic" title="Italic(Ctrl+I)" data-placement="top" data-toggle="tooltip">
-                <span class="glyphicon glyphicon-italic"></span>
-            </div>
-            <div class="tool-block su-tool-head" title="Header(Ctrl+H)" data-placement="top" data-toggle="tooltip">
-                <span class="glyphicon glyphicon-header"></span>
-            </div>
-            <div class="tool-block su-tool-link" title="Link(Ctrl+L)" data-placement="top" data-toggle="modal" data-target="#linkModal">
-                <span class="glyphicon glyphicon-link"></span>
-            </div>
-            <div class="tool-block su-tool-img" title="Image(Ctrl+G)" data-placement="top" data-toggle="tooltip" style="position: relative;">
-                <span class="glyphicon glyphicon-picture"></span>
-                <input type="file" class="upload">
-            </div>
-            <!--<div class="tool-block su-tool-list" title="List(Ctrl+U)" data-placement="top" data-toggle="tooltip">
-                <span class="glyphicon glyphicon-list"></span>
-            </div>
-            <div class="tool-block su-tool-orderlist" title="OrderList(Ctrl+O)" data-placement="top" data-toggle="tooltip">
-                <span class="glyphicon glyphicon-th-list"></span>
-            </div>-->
-            <div class="tool-block su-tool-code" title="Code(Ctrl+K)" data-placement="top" data-toggle="tooltip">
-                <span class="glyphicon glyphicon-asterisk"></span>
-            </div>
-            <!--<div class="tool-block su-tool-block" title="Quote(Ctrl+Q)" data-placement="top" data-toggle="tooltip">
-                <span class="glyphicon glyphicon-comment"></span>
-            </div>-->
-            <div class="tool-block su-tool-upload"  title="File Upload" data-placement="top" data-toggle="tooltip" style="position: relative;">
-                <span class="glyphicon glyphicon-upload" ></span>
-                <input type="file" class="upload">
-            </div>
-            <div class="tool-block su-tool-help" title="Help" data-placement="top" data-toggle="modal" data-target="#helpModal">
-                <span class="glyphicon glyphicon-info-sign"></span>
-            </div>
-        </div>
-        <div id="epiceditor">
-        </div>
-        <button type="button" class="btn submit">提交</button>
-    </div>
-</div>
-
-<div class="modal fade" id="linkModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h2 class="modal-title" id="myModalLabel">插入链接</h2>
-            </div>
-            <div class="modal-body">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class=" icon-link"></i></span>
-                    <input type="text" class="linkAddress form-control" placeholder="链接地址"/>
+        <!-- 筛选条件-->
+        <ul class="list-group search-condition">
+                <li class="list-group-item">
+                    <span>类型：</span>
+                    <span class="active"><a href="#">美食</a></span>
+                    <span><a href="#">学习</a></span>
+                    <span><a href="#">旅行</a></span>
+                </li>
+                <li class="list-group-item">
+                    <span>时间：</span>
+                    <span class="active"><a href="#">一天以内</a></span>
+                    <span><a href="#">一周以内</a></span>
+                    <span><a href="#">一月以内</a></span>
+                    <span><a href="#">全部</a></span>
+                </li>
+                <li class="list-group-item">
+                    <span>有无附件：</span>
+                    <span class="active"><a href="#">有</a></span>
+                    <span><a href="#">无</a></span>
+                </li>
+        </ul>
+        <!--内容列表-->
+        <div class="strategy-list">
+            <div class="strategy-list-header">
+                <div class="strategy-list-sort">
+                    <a href="#">按热度<i class=" icon-arrow-down"></i></a>
+                    <a href="#">最新发表<i class=" icon-arrow-down"></i></a>
                 </div>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="icon-font"></i></span>
-                    <input type="text" class="linkFont form-control" placeholder="链接文本" />
+                <ol class="breadcrumb">
+                    <li>一天以内</li>
+                    <li>一天以内</li>
+                    <li>一天以内</li>
+                </ol>
+            </div>
+            <div class="strategy-list-content">
+                <div class="content-header">
+                    <ul class="content-info">
+                        <li><i class="icon-eye-open"></i><span class="watched">99</span></li>
+                        <li><i class="icon-thumbs-up"></i><span class="up">99</span></li>
+                        <li><i class=" icon-comment"></i><span class="comment">99</span></li>
+                    </ul>
+                    <h3><a href="#">【我的间隔年】3.1——最美婺源</a></h3>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="confirm btn btn-primary" data-dismiss="modal">确认</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="helpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h2 class="modal-title" id="ModalLabel">使用说明</h2>
-            </div>
-            <div class="modal-body">
-                <ul class="list-group">
-                    <li class="list-group-item">加粗： **文本**</li>
-                    <li class="list-group-item">斜体：*文本*</li>
-                    <li class="list-group-item">标题：###文本</li>
-                    <li class="list-group-item">链接：</li>
-                    <li class="list-group-item">图片：</li>
-                    <li class="list-group-item">代码：`文本`</li>
+                <ul class="authorInfo">
+                    <li class="author-headImg"><a href="#"><img src="../images/logo.png" alt="作者头像"/></a>&nbsp;&nbsp;</li>
+                    <li>porter &nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                    <li>旅行 &nbsp;&nbsp;|&nbsp;&nbsp;</li>
+                    <li>一周以内</li>
                 </ul>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="confirm btn btn-primary" data-dismiss="modal">确认</button>
+                <div class="content-body"></div>
             </div>
         </div>
     </div>
+    <div class="content-right">
+
+    </div>
+
+
 </div>
+
 
 <script src="../libs/jquery.min.js"></script>
 <script src="../libs/bootstrap.min.js"></script>

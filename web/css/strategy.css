@@ -1,89 +1,72 @@
-.content{
-    padding:20px 50px;
-}
-.content-header>img{
-    width:60px;
-    height:60px;
-    float:left;
-}
-.content-header>h1{
-    font-size:24px;
-    margin-left:80px;
-    padding-top:35px;
-}
-.blogEdit{
-    padding:20px;
-}
-
-.blog-title{
-    padding:10px 0;
-}
-.blog-title select{
-    display:block;
-    height:30px;
-    width:80px;
-    padding-left:10px;
-    float:left;
-}
-.blog-title>input{
-    display:block;
-    width:50%;
-    min-width:200px;
-    height:30px;
-    margin-left:90px;
-}
-.blog-content textarea{
-    width:80%;
-    height:400px;
-}
-
-/*顶部工具栏*/
-.su-toolbar{
-    width:100%;
-    height:45px;
-    display: block;
-    background: #f5f5f5;
-    padding: 5px;
-    border: solid 1px;
-    border-color: #ccc;
-}
-.su-toolbar .tool-block{
-    cursor: pointer;
-    display: block;
-    width:35px;
-    margin:0 1%;
-    height:35px;
-    float:left;
-    padding: 5px;
-}
-.su-toolbar .tool-block *{
-    left:20%;
-    top:20%;
-}
-.su-toolbar .tool-block:hover{
+.web-style{
     background: #66ccff;
-}
-.su-toolbar .upload{
-    display: inline-block;
-    width:35px;
-    height:35px;
-    position:absolute;
-    top:0;
-    left:0;
-    opacity: 0;
-}
-.su-toolbar .upload:hover{
-    cursor: pointer;
+    color:#fff;
 }
 
-/*模态框*/
-.modal-body{
-    padding:30px;
+.content{
+    width:1000px;
+    margin:50px auto;
+    padding:20px 0;
 }
-.modal-body .input-group{
-    padding:10px;
+.content-left{
+    width:724px;
+    float:left;
+    overflow: hidden;
+}
+.content-right{
+    width:245px;
+    float:right;
+    overflow: hidden;
 }
 
-.submit{
+.search-condition{
     margin:20px 0;
+}
+.search-condition span{
+    padding:0 10px;
+}
+.search-condition .active{
+    background: #66ccff;
+    padding:3px 7px;
+    border-radius: 5px;
+}
+.search-condition .active a{
+    color:#fff !important;
+}
+
+
+.strategy-list{
+    overflow:hidden;
+    border-bottom:1px dashed #ddd;
+    padding-bottom:20px;
+}
+.strategy-list-sort{
+    float:right;
+    line-height:36px;
+}
+.strategy-list-sort a{
+    padding:0 10px;
+}
+
+/*文章信息*/
+.content-info{
+    float:right;
+}
+.content-info li{
+    float:left;
+    padding:0 10px;
+    color:#999;
+}
+.content-info li i{
+    padding-right:5px;
+}
+/*作者信息*/
+.authorInfo li{
+    float:left;
+    line-height: 32px;
+}
+.authorInfo .author-headImg img{
+    width:32px;
+    height:32px;
+    border-radius:50%;
 }
