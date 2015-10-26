@@ -1,0 +1,22 @@
+.content{
+    width:1024px;
+    margin:50px auto;
+}
+
+/*文章标题*/
+.strategyInfo-header{
+    border-bottom:1px solid #ddd;
+    overflow:hidden;
+}
+/*文章信息*/
+.content-info{
+    float:right;
+}
+.content-info li{
+    float:left;
+    padding:0 10px;
+    color:#999;
+}
+.content-info li i{
+    padding-right:5px;
+}
