@@ -10,6 +10,5 @@ $(function(){
         var textVal=$('.adaptArea textarea').val();
         $('.limit').html('最多输入'+(300-textVal.length)+'字');
         $('.adaptArea span').html(textVal);
-
     });
 });
