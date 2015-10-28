@@ -1,12 +1,13 @@
 $(function(){
 
-    //getDocument();
+    getDocument();
 });
 function getDocument(){
     var data={
-
+        author:123,
+        page:1
     };
-    ajaxRequest('/getDocument',data,function(){
+    ajaxRequest('/getDocumentList',data,function(){
 
     });
 }
