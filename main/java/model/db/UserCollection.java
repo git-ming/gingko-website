@@ -20,15 +20,15 @@ public class UserCollection extends BlogDBCollection {
         Map<String, Object> data = new HashMap<>();
         data.put("username", username);
         data.put("password", password);
-        data.put("motto", "");
+        data.put("message num", 0);
         this.insert(new Document(data));
         unlockCollection();
     }
 
     public DBData getUser(String username) {
         lockCollection();
-        List<Map<String, Object>> iterable = collection.find(new Document("username", username));
-        Iterator<Map<String, Object>> cursor = iterable.iterator();
+        List<Map<String, Object>> list = collection.find(new Document("username", username));
+        Iterator<Map<String, Object>> cursor = list.iterator();
         if (!cursor.hasNext()) return null;
 
         Map<String, Object> document = cursor.next();
@@ -37,8 +37,8 @@ public class UserCollection extends BlogDBCollection {
 
     public DBData getUserData(String username) {
         lockCollection();
-        List<Map<String, Object>> iterable = collection.find(new Document("username", username));
-        Iterator<Map<String, Object>> cursor = iterable.iterator();
+        List<Map<String, Object>> list = collection.find(new Document("username", username));
+        Iterator<Map<String, Object>> cursor = list.iterator();
         if (!cursor.hasNext()) return null;
 
         Map<String, Object> document = cursor.next();
@@ -60,8 +60,8 @@ public class UserCollection extends BlogDBCollection {
     public List<DBData> findUserData(Document document) {
         lockCollection();
         List<DBData> ans = new LinkedList<>();
-        List<Map<String, Object>> iterable = collection.find(document);
-        ans.addAll(iterable.stream().map(this::getDocumentNotUsing).collect(Collectors.toList()));
+        List<Map<String, Object>> list = collection.find(document);
+        ans.addAll(list.stream().map(this::getDocumentNotUsing).collect(Collectors.toList()));
         unlockCollection();
         return ans;
     }

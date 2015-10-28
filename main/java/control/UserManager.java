@@ -35,11 +35,24 @@ public class UserManager extends Manager {
         sendEvent.submit();
     }
 
-    public void userExist(String username) {
+    public void getUserInfo(String username, String password) {
         SendEvent sendEvent = new SendEvent() {
             @Override
             public boolean run() throws Exception {
-                return (boolean) ManagerLogic.invoke(this.getClojureName(), username, sendManager, this);
+                return accessConfig.isAccept(username, password, this)
+                        && (boolean) ManagerLogic.invoke(this.getClojureName(), username, sendManager, this);
+            }
+        };
+        sendManager.addFailMessage(sendEvent);
+        sendEvent.submit();
+    }
+
+    public void getOtherUserInfo(String username, String password, String aimUser) {
+        SendEvent sendEvent = new SendEvent() {
+            @Override
+            public boolean run() throws Exception {
+                return accessConfig.isAccept(username, password, this)
+                        && (boolean) ManagerLogic.invoke(this.getClojureName(), aimUser, sendManager, this);
             }
         };
         sendManager.addFailMessage(sendEvent);
@@ -67,29 +80,6 @@ public class UserManager extends Manager {
             }
         };
         sendManager.addSendMessage(sendEvent);
-        sendEvent.submit();
-    }
-
-    public void setMotto(String username, String password, String motto) {
-        SendEvent sendEvent = new SendEvent() {
-            @Override
-            public boolean run() throws Exception {
-                return accessConfig.isAccept(username, password, this)
-                        && (boolean) ManagerLogic.invoke(this.getClojureName(), username, password, motto);
-            }
-        };
-        sendManager.addSendMessage(sendEvent);
-        sendEvent.submit();
-    }
-
-    public void getMotto(String username) {
-        SendEvent sendEvent = new SendEvent() {
-            @Override
-            public boolean run() throws Exception {
-                return (boolean) ManagerLogic.invoke(this.getClojureName(), username, sendManager, this);
-            }
-        };
-        sendManager.addFailMessage(sendEvent);
         sendEvent.submit();
     }
 }

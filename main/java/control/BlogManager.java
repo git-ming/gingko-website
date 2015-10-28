@@ -57,57 +57,25 @@ public class BlogManager extends Manager {
         sendEvent.submit();
     }
 
-    public void getAuthorTypeDocumentList(String author, String type, String page) {
-        new SendEvent() {
+    public void getDocumentList(String author, String type, String from, String to, String page) {
+        SendEvent sendEvent = new SendEvent() {
             @Override
             public boolean run() throws Exception {
-                return (boolean) ManagerLogic.invoke(this.getClojureName(), author, type, page, sendManager, this, returnCodeConfig);
+                return (boolean) ManagerLogic.invoke(this.getClojureName(), author, type, from, to, page, sendManager, this);
             }
-        }.submit();
+        };
+        sendManager.addFailMessage(sendEvent);
+        sendEvent.submit();
     }
 
-    public void getAuthorTypeDocumentListSize(String author, String type) {
-        new SendEvent() {
+    public void getDocumentListSize(String author, String type, String from, String to) {
+        SendEvent sendEvent = new SendEvent() {
             @Override
             public boolean run() throws Exception {
-                return (boolean) ManagerLogic.invoke(this.getClojureName(), author, type, sendManager, this, returnCodeConfig);
+                return (boolean) ManagerLogic.invoke(this.getClojureName(), author, type, from, to, sendManager, this);
             }
-        }.submit();
-    }
-
-    public void getTypeDocumentList(String type, String page) {
-        new SendEvent() {
-            @Override
-            public boolean run() throws Exception {
-                return (boolean) ManagerLogic.invoke(this.getClojureName(), "type", type, page, sendManager, this, returnCodeConfig);
-            }
-        }.submit();
-    }
-
-    public void getTypeDocumentListSize(String type) {
-        new SendEvent() {
-            @Override
-            public boolean run() throws Exception {
-                return (boolean) ManagerLogic.invoke(this.getClojureName(), "type", type, sendManager, this, returnCodeConfig);
-            }
-        }.submit();
-    }
-
-    public void getAuthorDocumentList(String author, String page) {
-        new SendEvent() {
-            @Override
-            public boolean run() throws Exception {
-                return (boolean) ManagerLogic.invoke(this.getClojureName(), "author", author, page, sendManager, this, returnCodeConfig);
-            }
-        }.submit();
-    }
-
-    public void getAuthorDocumentListSize(String author) {
-        new SendEvent() {
-            @Override
-            public boolean run() throws Exception {
-                return (boolean) ManagerLogic.invoke(this.getClojureName(), "author", author, sendManager, this, returnCodeConfig);
-            }
-        }.submit();
+        };
+        sendManager.addFailMessage(sendEvent);
+        sendEvent.submit();
     }
 }

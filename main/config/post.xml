@@ -9,19 +9,13 @@
             <data>password</data>
         </method>
     </solver>
-    <solver name="set motto" url="/setMotto" manager="control.UserManager" access="true">
-        <method name="setMotto">
-            <data>motto</data>
+    <solver name="userInfo" url="/userInfo" manager="control.UserManager" access="true">
+        <method name="getUserInfo">
         </method>
     </solver>
-    <solver name="get motto" url="/getMotto" manager="control.UserManager" access="false">
-        <method name="getMotto">
-            <data>username</data>
-        </method>
-    </solver>
-    <solver name="use exist" url="/userExist" manager="control.UserManager" access="false">
-        <method name="userExist">
-            <data>username</data>
+    <solver name="otherUserInfo" url="/otherUserInfo" manager="control.UserManager" access="true">
+        <method name="getOtherUserInfo">
+            <data>aimUser</data>
         </method>
     </solver>
 
@@ -60,39 +54,21 @@
             <data>id</data>
         </method>
     </solver>
-    <solver name="get document list by author" url="/getDocumentListByAuthor" manager="control.BlogManager" access="false">
-        <method name="getAuthorDocumentList">
-            <data>author</data>
+    <solver name="get document list" url="/getDocumentList" manager="control.BlogManager" access="false">
+        <method name="getDocumentList">
+            <data default="null">author</data>
+            <data default="null">type</data>
+            <data default="null">from</data>
+            <data default="null">to</data>
             <data default="1">page</data>
         </method>
     </solver>
-    <solver name="get document list by author size" url="/getDocumentListByAuthorSize" manager="control.BlogManager" access="false">
-        <method name="getAuthorDocumentListSize">
-            <data>author</data>
-        </method>
-    </solver>
-    <solver name="get document list by type" url="/getDocumentListByType" manager="control.BlogManager" access="false">
-        <method name="getTypeDocumentList">
-            <data>type</data>
-            <data default="1">page</data>
-        </method>
-    </solver>
-    <solver name="get document list by type size" url="/getDocumentListByTypeSize" manager="control.BlogManager" access="false">
-        <method name="getTypeDocumentListSize">
-            <data>type</data>
-        </method>
-    </solver>
-    <solver name="get document list by author and type" url="/getDocumentListByAuthorAndType" manager="control.BlogManager" access="false">
-        <method name="getAuthorTypeDocumentList">
-            <data>author</data>
-            <data>type</data>
-            <data default="1">page</data>
-        </method>
-    </solver>
-    <solver name="get document list by author and type size" url="/getDocumentListByAuthorAndTypeSize" manager="control.BlogManager" access="false">
-        <method name="getAuthorTypeDocumentListSize">
-            <data>author</data>
-            <data>type</data>
+    <solver name="get document list size" url="/getDocumentListSize" manager="control.BlogManager" access="false">
+        <method name="getDocumentListSize">
+            <data default="null">author</data>
+            <data default="null">type</data>
+            <data default="null">from</data>
+            <data default="null">to</data>
         </method>
     </solver>
     <solver name="add reader" url="/addDocumentReader" manager="control.BlogManager" access="false">

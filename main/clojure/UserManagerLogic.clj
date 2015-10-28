@@ -47,30 +47,17 @@
       (if (nil? data) false
         (do (. (. data object) put accessType val) true)))))
 
-(defn setMotto [username password motto]
-  (if (nil? motto) false
-    (let [lengthLimitConfig (. LengthLimitConfig getConfig)]
-      (if (> (count motto) (. lengthLimitConfig getLimit "motto")) false
-        (let [data (. (new UserCollection) getUser username)]
-          (. (. data object) put "motto" motto) true)))))
+(defn getUserInfo [username manager event]
+  (let [user (. (new UserCollection) getUserData username)]
+    (if (nil? user) false
+      (let [object (. user object)]
+        (. object remove "password") (. object remove "_id")
+        (. manager addSuccessMessage event object) true))))
 
-(defn getMotto [username manager event]
-  (if (nil? username) false
-    (let [data (. (new UserCollection) getUser username)]
-      (if (nil? data) false
-        (do (. manager addSuccessMessage event (str "{\"return\":\"" (. (. data object) getString "motto") "\"}"))
-          true)))))
-
-
-(defn userExist [username manager event]
-  (if (nil? username) false
-    (let [resoult (not (nil? (. (new UserCollection) getUserData username)))]
-      (do (. manager addSuccessMessage event (str "{\"return\":" resoult "}")) true))))
 
 (. ManagerLogic put "control.UserManager$loginUser" loginUser 2)
 (. ManagerLogic put "control.UserManager$register" register 2)
 (. ManagerLogic put "control.UserManager$removeUser" removeUser 2)
 (. ManagerLogic put "control.UserManager$changeUserAccess" changeUserAccess 5)
-(. ManagerLogic put "control.UserManager$setMotto" setMotto 3)
-(. ManagerLogic put "control.UserManager$getMotto" getMotto 3)
-(. ManagerLogic put "control.UserManager$userExist" userExist 3)
+(. ManagerLogic put "control.UserManager$getUserInfo" getUserInfo 3)
+(. ManagerLogic put "control.UserManager$getOtherUserInfo" getUserInfo 3)
