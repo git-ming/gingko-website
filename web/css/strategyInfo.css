@@ -1,6 +1,11 @@
 .content{
     width:1024px;
     margin:50px auto;
+    background: #fff;
+    padding:20px;
+}
+.background-gray{
+    background-color: #f3f3f3 !important;
 }
 
 /*文章标题*/
@@ -19,4 +24,18 @@
 }
 .content-info li i{
     padding-right:5px;
+}
+
+/*评论*/
+.myComment{
+    border-top:2px solid #ddd;
+    background-color:#F8F8F8;
+    border-bottom:1px solid #ddd;
+    padding:20px;
+}
+.myComment textarea{
+    width:100%;
+    border-color:rgb(169, 169, 169);
+    border-radius:5px;
+    overflow:auto;
 }
