@@ -2,7 +2,6 @@
     background: #66ccff;
     color:#fff;
 }
-
 .content{
     width:1000px;
     margin:50px auto;
@@ -19,6 +18,8 @@
     overflow: hidden;
 }
 
+
+/*搜索框*/
 .search-condition{
     margin:20px 0;
 }
@@ -36,10 +37,9 @@
 
 
 .strategy-list{
-    overflow:hidden;
-    border-bottom:1px dashed #ddd;
     padding-bottom:20px;
 }
+/***********攻略列表头部****************/
 .strategy-list-sort{
     float:right;
     line-height:36px;
@@ -48,7 +48,15 @@
     padding:0 10px;
 }
 
-/*文章信息*/
+
+/***************攻略列表文章modal***************/
+#strategy-modal{
+    display:none;
+}
+.strategy-list-item{
+    border-bottom:1px dashed #ddd;
+    overflow:hidden;
+}
 .content-info{
     float:right;
 }
@@ -60,7 +68,11 @@
 .content-info li i{
     padding-right:5px;
 }
-/*作者信息*/
+
+.authorInfo{
+    overflow:hidden;
+    padding:0 0 5px 0;
+}
 .authorInfo li{
     float:left;
     line-height: 32px;
@@ -69,4 +81,9 @@
     width:32px;
     height:32px;
     border-radius:50%;
+}
+
+.content-body{
+    clear:both;
+    padding:10px;
 }

@@ -9,7 +9,6 @@ $(function(){
         markdown();
         $('.nickName').html(decodeURIComponent(window.username));
     }else{
-        alert('ÇëÏÈµÇÂ¼»ò×¢²á');
         location.href='login.html';
     }
 
