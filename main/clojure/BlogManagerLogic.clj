@@ -97,13 +97,14 @@
         (. object put "reader" (int val)) true))))
 
 (defn getDocumentList [author type from to page manager event]
-  (let [document (new Document)]
-    (if (not (nil? author)) (. document append "author" author))
-    (if (not (nil? type)) (. document append "type" type))
-    (let [dateFormat (new SimpleDateFormat "yyyy-MM-dd HH:mm:ss")]
-      (let [fromDate (if (not= from "null") (. dateFormat parse from) (. dateFormat parse "1917-01-01 00:00:00"))
-            toDate (if (not= from "null") (. dateFormat parse to) (new Date))]
-        (sendDocumentList manager event document fromDate toDate (. Integer valueOf page))))))
+  (if (or (nil? author) (nil? type) (nil? from) (nil? to)) false
+    (let [document (new Document)]
+      (if (not= author "null") (. document append "author" author))
+      (if (not= type "null") (. document append "type" type))
+      (let [dateFormat (new SimpleDateFormat "yyyy-MM-dd HH:mm:ss")]
+        (let [fromDate (if (not= from "null") (. dateFormat parse from) (. dateFormat parse "1917-01-01 00:00:00"))
+              toDate (if (not= from "null") (. dateFormat parse to) (new Date))]
+          (sendDocumentList manager event document fromDate toDate (. Integer valueOf page)))))))
 
 (defn getDocumentListSize [author type from to manager event]
   (if (or (nil? author) (nil? type) (nil? from) (nil? to)) false
