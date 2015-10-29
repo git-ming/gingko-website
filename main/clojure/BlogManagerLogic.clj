@@ -5,15 +5,16 @@
            [org.bson Document BsonArray BsonDocument BsonDateTime BsonString]
            [model.config LengthLimitConfig ConfigManager ReturnCodeConfig ConstConfig]
            [java.util Date LinkedList Comparator]
-           [control ManagerLogic BlogManager]))
+           [control ManagerLogic BlogManager]
+           [java.text SimpleDateFormat]))
 
 (defn document-compare [o1 o2]
   (let [date1 (. (. o1 object) get "time")
         date2 (. (. o2 object) get "time")]
     (if (. date1 after date2) -1 (if (. date2 after date1) 1 0))))
 
-(defn sendDocumentList [manager event message page]
-  (let [aimList (sort document-compare (vec (. (new BlogCollection) findDocumentListData message)))
+(defn sendDocumentList [manager event message from to page]
+  (let [aimList (sort document-compare (vec (. (new BlogCollection) findDocumentListData message from to)))
         ans (new LinkedList)]
     (dotimes [i (count aimList)]
       (let [now (nth aimList i)
@@ -34,9 +35,9 @@
       (if (<= left right) (do (. manager addSuccessMessage event (. ans subList left right)) true)
         false))))
 
-(defn sendDocumentListSize [manager event message]
+(defn sendDocumentListSize [manager event message from to]
   (let [onePageSize (. (. ConstConfig getConfig) getConst "blog page size")
-        aimList (vec (. (new BlogCollection) findDocumentListData message))
+        aimList (vec (. (new BlogCollection) findDocumentListData message from to))
         pageSize (max 1 (+ (int (/ (count aimList) onePageSize)) (if (= 0 (rem (count aimList) onePageSize)) 0 1)))]
     (do (. manager addSuccessMessage event (str "{\"return\":" pageSize "}"))) true))
 
@@ -95,39 +96,30 @@
             val (+ (. object getInteger "reader" 0) 1)]
         (. object put "reader" (int val)) true))))
 
-(defn getAuthorTypeDocumentList [author typeMessage page manager event returnCodeConfig]
-  (documentNotFoundMessage manager event returnCodeConfig)
-  (if (or (nil? author) (nil? typeMessage)) false
-    (let [userData (. (new UserCollection) getUserData author)]
-      (let [document (new Document)]
-        (sendDocumentList manager event (. (. document append "author" author) append "type" typeMessage) (. Integer valueOf page))))))
-
-(defn getAuthorTypeDocumentListSize [author typeMessage manager event returnCodeConfig]
-  (documentNotFoundMessage manager event returnCodeConfig)
-  (if (or (nil? author) (nil? typeMessage)) false
-    (let [userData (. (new UserCollection) getUserData author)]
-      (let [document (new Document)]
-        (sendDocumentListSize manager event (. (. document append "author" author) append "type" typeMessage))))))
-
-(defn getTypeDocumentList [typeKey typeMessage page manager event returnCodeConfig]
-  (documentNotFoundMessage manager event returnCodeConfig)
-  (if (nil? typeMessage) false
+(defn getDocumentList [author type from to page manager event]
+  (if (or (nil? author) (nil? type) (nil? from) (nil? to)) false
     (let [document (new Document)]
-      (sendDocumentList manager event (. document append typeKey typeMessage) (. Integer valueOf page)))))
+      (if (not= author "null") (. document append "author" author))
+      (if (not= type "null") (. document append "type" type))
+      (let [dateFormat (new SimpleDateFormat "yyyy-MM-dd HH:mm:ss")]
+        (let [fromDate (if (not= from "null") (. dateFormat parse from) (. dateFormat parse "1917-01-01 00:00:00"))
+              toDate (if (not= from "null") (. dateFormat parse to) (new Date))]
+          (sendDocumentList manager event document fromDate toDate (. Integer valueOf page)))))))
 
-(defn getTypeDocumentListSize [typeKey typeMessage manager event returnCodeConfig]
-  (documentNotFoundMessage manager event returnCodeConfig)
-  (if (nil? typeMessage) false
+(defn getDocumentListSize [author type from to manager event]
+  (if (or (nil? author) (nil? type) (nil? from) (nil? to)) false
     (let [document (new Document)]
-      (sendDocumentListSize manager event (. document append typeKey typeMessage)))))
+      (if (not= author "null") (. document append "author" author))
+      (if (not= type "null") (. document append "type" type))
+      (let [dateFormat (new SimpleDateFormat "yyyy-MM-dd HH:mm:ss")]
+        (let [fromDate (if (not= from "null") (. dateFormat parse from) (. dateFormat parse "1917-01-01 00:00:00"))
+              toDate (if (not= from "null") (. dateFormat parse to) (new Date))]
+          (sendDocumentListSize manager event document fromDate toDate))))))
+
 
 (. ManagerLogic put "control.BlogManager$addDocument" addDocument 6)
 (. ManagerLogic put "control.BlogManager$addReply" addReply 4)
 (. ManagerLogic put "control.BlogManager$getDocument" getDocument 4)
 (. ManagerLogic put "control.BlogManager$addReader" addReader 1)
-(. ManagerLogic put "control.BlogManager$getAuthorTypeDocumentList" getAuthorTypeDocumentList 6)
-(. ManagerLogic put "control.BlogManager$getTypeDocumentList" getTypeDocumentList 6)
-(. ManagerLogic put "control.BlogManager$getAuthorDocumentList" getTypeDocumentList 6)
-(. ManagerLogic put "control.BlogManager$getAuthorTypeDocumentListSize" getAuthorTypeDocumentListSize 5)
-(. ManagerLogic put "control.BlogManager$getTypeDocumentListSize" getTypeDocumentListSize 5)
-(. ManagerLogic put "control.BlogManager$getAuthorDocumentListSize" getTypeDocumentListSize 5)
+(. ManagerLogic put "control.BlogManager$getDocumentList" getDocumentList 7)
+(. ManagerLogic put "control.BlogManager$getDocumentListSize" getDocumentListSize 6)

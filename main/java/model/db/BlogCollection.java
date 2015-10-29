@@ -3,6 +3,7 @@ package model.db;
 import org.bson.Document;
 import org.bson.types.ObjectId;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /**
@@ -59,13 +60,31 @@ public class BlogCollection extends BlogDBCollection {
 
     public List<DBData> findDocumentListData(Document message) {
         lockCollection();
-        List<Map<String, Object>> iterable = collection.find(message);
-        Iterator<Map<String, Object>> cursor = iterable.iterator();
+        List<Map<String, Object>> list = collection.find(message);
+        Iterator<Map<String, Object>> cursor = list.iterator();
 
         List<DBData> ans = new LinkedList<>();
         while (cursor.hasNext()) {
             Map<String, Object> document = cursor.next();
             ans.add(getDocumentNotUsing(document));
+        }
+        unlockCollection();
+        return ans;
+    }
+
+    public List<DBData> findDocumentListData(Document message, Date from, Date to) {
+        lockCollection();
+        List<Map<String, Object>> list = collection.find(message);
+        Iterator<Map<String, Object>> cursor = list.iterator();
+
+        List<DBData> ans = new LinkedList<>();
+        while (cursor.hasNext()) {
+            Map<String, Object> document = cursor.next();
+            DBData dbData = getDocumentNotUsing(document);
+            Date time = (Date) dbData.object.get("time");
+            if (time.after(from) && time.before(to)) {
+                ans.add(dbData);
+            }
         }
         unlockCollection();
         return ans;
