@@ -82,6 +82,17 @@
             <data>reply</data>
         </method>
     </solver>
+    <solver name="get reply" url="/getReply" manager="control.BlogManager" access="false">
+        <method name="getReply">
+            <data>id</data>
+            <data default="1">page</data>
+        </method>
+    </solver>
+    <solver name="get reply size" url="/getReplySize" manager="control.BlogManager" access="false">
+        <method name="getReplySize">
+            <data>id</data>
+        </method>
+    </solver>
 
     <solver name="get message list" url="/getMessageList" manager="control.MessageManager" access="true">
         <method name="getAllMessage"/>

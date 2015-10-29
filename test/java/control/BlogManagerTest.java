@@ -3,6 +3,7 @@ package control;
 import model.db.BlogCollection;
 import model.db.BlogDBCollection;
 import net.sf.json.JSONObject;
+import org.bson.BsonDateTime;
 import org.bson.Document;
 import org.junit.After;
 import org.junit.Test;
@@ -164,6 +165,27 @@ public class BlogManagerTest {
         BlogDBCollection.DBData data = listData.get(0);
         assertEquals(n, ((List) data.object.get("reply")).size());
     }
+//
+//    @Test
+//    public void testGetReply() throws Exception {
+//        testAddDocument();
+//        BlogCollection collection = new BlogCollection();
+//        List<BlogDBCollection.DBData> data = collection.findDocumentListData(new Document().append("author", "test user"));
+//        String id = data.get(0).object.get("_id").toString();
+//
+//        int n = 15;
+//        for (int i = 0; i < n; i++) {
+//            addReply(new Document().append("author", "test user"), "test user", "reply", new Counter(1));
+//        }
+//
+//        Counter counter = new Counter(1);
+//        BlogManagerNoSend blogManager = new BlogManagerNoSend(counter);
+//        blogManager.getReply(id, "2");
+//        while (counter.get() != 0) {
+//            Thread.sleep(500);
+//        }
+//        System.out.println(blogManager.getManagerNoSend().getArray().toString());
+//    }
 
     @Test
     public void testAddReader() throws Exception {
@@ -232,7 +254,8 @@ public class BlogManagerTest {
 
     private void testTime() throws InterruptedException {
         Counter counter;
-        BlogManagerNoSend blogManager;Date from = new Date();
+        BlogManagerNoSend blogManager;
+        Date from = new Date();
         Thread.sleep(1000);
         addDocument("test user", "1", "2", new Counter(1), "default");
         Thread.sleep(1000);
@@ -242,8 +265,7 @@ public class BlogManagerTest {
         counter = new Counter(1);
         blogManager = new BlogManagerNoSend(counter);
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        blogManager.getDocumentList("test user", "default", simpleDateFormat.format(from), simpleDateFormat.format(to), "1");
+        blogManager.getDocumentList("test user", "default", from.getTime() + "", to.getTime() + "", "1");
         while (counter.get() != 0) {
             Thread.sleep(500);
         }
@@ -261,79 +283,4 @@ public class BlogManagerTest {
         }
         assertEquals(0, blogManager.getManagerNoSend().getArray().size());
     }
-
-//    @Test
-//    public void testGetAuthorTypeDocumentList() throws InterruptedException {
-//        UserManagerTest.register("test user");
-//        addDocument("test user", "1", "2", new Counter(1), "default");
-//        addDocument("test user", "2", "3", new Counter(1), "default");
-//
-//        Counter counter = new Counter(1);
-//        BlogManagerNoSend blogManager = new BlogManagerNoSend(counter);
-//        blogManager.getAuthorTypeDocumentList("test user", "default", "1");
-//        while (counter.get() != 0) {
-//            Thread.sleep(500);
-//        }
-//        assertEquals(2, blogManager.getManagerNoSend().getArray().size());
-//
-//        counter = new Counter(1);
-//        blogManager = new BlogManagerNoSend(counter);
-//        blogManager.getAuthorTypeDocumentListSize("test user", "default");
-//        while (counter.get() != 0) {
-//            Thread.sleep(500);
-//        }
-//        assertEquals(1, counter.getSuccess());
-//        assertEquals(1, blogManager.getManagerNoSend().getMessage().getInt("return"));
-//    }
-//
-//    @Test
-//    public void testGetAuthorDocumentList() throws InterruptedException {
-//        UserManagerTest.register("test user");
-//        UserManagerTest.register("test user 2");
-//        addDocument("test user", "1", "2", new Counter(1), "default");
-//        addDocument("test user 2", "2", "3", new Counter(1), "default");
-//
-//        Counter counter = new Counter(1);
-//        BlogManagerNoSend blogManager = new BlogManagerNoSend(counter);
-//        blogManager.getAuthorDocumentList("test user", "1");
-//        while (counter.get() != 0) {
-//            Thread.sleep(500);
-//        }
-//        assertEquals(1, blogManager.getManagerNoSend().getArray().size());
-//
-//        counter = new Counter(1);
-//        blogManager = new BlogManagerNoSend(counter);
-//        blogManager.getAuthorDocumentListSize("test user");
-//        while (counter.get() != 0) {
-//            Thread.sleep(500);
-//        }
-//        assertEquals(1, counter.getSuccess());
-//        assertEquals(1, blogManager.getManagerNoSend().getMessage().getInt("return"));
-//    }
-//
-//    @Test
-//    public void testGetTypeDocumentList() throws InterruptedException {
-//        UserManagerTest.register("test user");
-//        UserManagerTest.register("test user 2");
-//        addDocument("test user", "1", "2", new Counter(1), "default");
-//        addDocument("test user", "1", "2", new Counter(1), "type2");
-//        addDocument("test user 2", "2", "3", new Counter(1), "type2");
-//
-//        Counter counter = new Counter(1);
-//        BlogManagerNoSend blogManager = new BlogManagerNoSend(counter);
-//        blogManager.getTypeDocumentList("type2", "1");
-//        while (counter.get() != 0) {
-//            Thread.sleep(500);
-//        }
-//        assertEquals(2, blogManager.getManagerNoSend().getArray().size());
-//
-//        counter = new Counter(1);
-//        blogManager = new BlogManagerNoSend(counter);
-//        blogManager.getTypeDocumentListSize("default");
-//        while (counter.get() != 0) {
-//            Thread.sleep(500);
-//        }
-//        assertEquals(1, counter.getSuccess());
-//        assertEquals(1, blogManager.getManagerNoSend().getMessage().getInt("return"));
-//    }
 }
