@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心</title>
+    <link href="../libs/bootstrap.min.css" rel="stylesheet">
+    <link href="../libs/font-awesome.min.css" rel="stylesheet">
+    <link href="../libs/highlight/styles/default.css" rel="stylesheet"/>
+    <link href="../css/base.css" rel="stylesheet">
+    <link href="../css/user.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top " id="navigation" >
+    <div class="container ">
+        <div class="navbar-header">              <!--网站Logo-->
+            <a class="navbar-brand" href="#">银杏叶</a>
+        </div>
+        <ul class="nav navbar-nav navbar-right user-info">
+            <li><a  href="login.html">登录</a></li>
+            <li><a  href="reg.html">注册</a></li>
+        </ul>
+        <form class="navbar-form navbar-right">
+            <div class="form-group">
+                <input type="text" class="form-control"/>
+            </div>
+            <button type="button" class="btn btn-default">搜索</button>
+        </form>
+    </div>
+</nav>
+<div class="content">
+    <div class="content-header" >
+        <img src="../images/headImg.jpg" alt=""/>
+        <h1 ><a href="index.html" class="nickName">昵称</a></h1>
+    </div>
+    <ul class="nav nav-tabs">
+        <li role="presentation" class="active"><a href="#" >我的资料</a></li>
+        <li role="presentation" ><a href="#" class="myFocus">我的关系</a></li>
+        <li role="presentation"><a href="#" class="myMessages">我的消息</a></li>
+    </ul>
+    <div class="Focus" style="display:none;">
+        <h3>我关注的人（<span class="focusNum">0</span>）</h3>
+        <ul class="focus-list list-group">
+        </ul>
+    </div>
+    <div class="Messages" style="display:none;">
+        <h3>
+            未读通知(<span class="messageNum">0</span>) |
+            <button class="readAll btn btn-default btn-xs">全部标记为已读</button>
+            <button class="delete btn btn-default btn-xs">删除选中消息</button>
+        </h3>
+        <ul class="message-list list-group">
+        </ul>
+    </div>
+</div>
+
+<ul id="message-template" style="display:none;">
+    <li class="list-group-item" data-toggle="modal" data-target="#messageModal">
+        <input type="checkbox" name="isRead" />
+        <span class="message-tag"></span>
+        <span class="message-content">对不起，系统出错</span>
+        <span class="message-author"></span>
+        <span class="message-date pull-right"></span>
+    </li>
+</ul>
+
+<!-- Modal -->
+<div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">确认</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../libs/jquery.min.js"></script>
+<script src="../libs/bootstrap.min.js"></script>
+<script src="../libs/EpicEditor/js/epiceditor.min.js"></script>
+<script src="../js/base.js"></script>
+<script src="../js/user.js"></script>
+</body>
+</html>

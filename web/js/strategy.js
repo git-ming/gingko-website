@@ -10,6 +10,7 @@ $(function(){
     $('.search').click(function(){
         var searchVal=$('.searchVal').val()||null;
         data.author=searchVal;
+        data.page=1;
         getDocumentListSize(data);
     });
 
@@ -17,6 +18,7 @@ $(function(){
     $('.filterByType').on('click','a',function(){
         $('.filterByType span').removeClass('active');
         data.type=$(this).parent().addClass('active').attr('data-type');
+        data.page=1;
         getDocumentListSize(data);
     });
 
@@ -25,7 +27,6 @@ $(function(){
         $('.filterByTime span').removeClass('active');
         data.to=new Date().getTime();
         var dataTime=$(this).parent().addClass('active').attr('data-time');
-
         switch(dataTime){
             case 'day':
                 data.from=data.to-86400000;
@@ -41,6 +42,7 @@ $(function(){
                 data.to=null;
                 break;
         }
+        data.page=1;
         getDocumentListSize(data);
     });
 
