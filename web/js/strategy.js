@@ -2,15 +2,26 @@ $(function(){
 
     //获取攻略列表
     var data={
-        author:123,
-        page:2
+        page:1
     };
-    getDocumentList(data);
+    //页面初始化
+    getDocumentListSize(data);
+
+
+    $('.pagination').on('click','a',function(){
+        var pageNum=$('.pagination a:last').attr('page');
+        data.page=$(this).attr('page');
+        console.log(pageNum);
+        page(pageNum,data);
+    });
 });
+
+//获取攻略列表
 function getDocumentList(data){
     ajaxRequest('/getDocumentList',data,function(response){
         var strategyNum=response.length;
         if(strategyNum>0){
+            $('.strategy-list').empty();
             for(var i=0;i<strategyNum;i++){
                 $('.strategy-list').append($('#strategy-modal').html());
                 var target=$('.strategy-list-item').eq(i);
@@ -39,11 +50,21 @@ function getDocumentList(data){
     });
 }
 
+//获取攻略总页数
+function getDocumentListSize(data){
+    ajaxRequest('/getDocumentListSize',data,function(response){
+        var pageNum=response.return;
+        page(pageNum,data);
+    });
+}
+
 //分页
-function page(pageNum,pageNo){
+function page(pageNum,data){
+    var pageNo=parseInt(data.page);
     if(pageNum==1){
         $('.pagination').empty();
     }else{
+        console.log(pageNum);
         $('.pagination').empty()
             .append("<li><a href='#' page='1'>首页</a></li>" +
             "<li class='active'><a href='#'  page='"+pageNo+"'>"+pageNo+"</a></li>" +
@@ -53,25 +74,25 @@ function page(pageNum,pageNo){
         if(pageNo!=pageNum)
             $('.pagination li:last').before("<li><a href='#' class='next' page='"+(pageNo+1)+"'>下一页</a></li>");
         if(pageNo>4){
-            $('.active').before("<li><a href='#'>...</a></li>")
+            $('.pagination .active').before("<li><a href='#'>...</a></li>")
                 .before("<li><a href='#' page='"+(pageNo-3)+"'>"+(pageNo-3)+"</a></li>")
                 .before("<li><a href='#' page='"+(pageNo-2)+"'>"+(pageNo-2)+"</a></li>")
                 .before("<li><a href='#' page='"+(pageNo-1)+"'>"+(pageNo-1)+"</a></li>");
         }else{
             for(var i=1;i<pageNo;i++){
-                $('.active').before("<li><a href='#' page='"+i+"'>"+i+"</a></li>");
+                $('.pagination .active').before("<li><a href='#' page='"+i+"'>"+i+"</a></li>");
             }
         }
         if(pageNum-pageNo>3){
-            $('.active').after("<li><a href='#'>...</a></li>")
+            $('.pagination .active').after("<li><a href='#'>...</a></li>")
                 .after("<li><a href='#' page='"+(pageNum)+"'>"+(pageNum)+"</a></li>")
                 .after("<li><a href='#' page='"+(pageNum-1)+"'>"+(pageNum-1)+"</a></li>")
                 .after("<li><a href='#' page='"+(pageNum-2)+"'>"+(pageNum-2)+"</a></li>");
         }else{
             for(i=pageNum;i>pageNo;i--){
-                $('.active').after("<li><a href='#' page='"+i+"'>"+i+"</a></li>");
+                $('.pagination .active').after("<li><a href='#' page='"+i+"'>"+i+"</a></li>");
             }
         }
     }
-    getDocumentList(pageNo);
+    getDocumentList(data);
 }

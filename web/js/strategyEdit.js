@@ -56,6 +56,7 @@ function markdown(){
     };
     var editor = new EpicEditor(opts).load();
     var getEditor=editor.getElement('editor').body;
+    $(getEditor).empty();
     $('.submit').click(function () {
         var sendVal=editor.getElement('previewer').body.innerHTML;
         var preview=encodeURIComponent(sendVal.slice(0,99));
