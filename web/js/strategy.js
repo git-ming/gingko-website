@@ -23,20 +23,22 @@ $(function(){
     //按时间筛选
     $('.filterByTime').on('click','a',function(){
         $('.filterByTime span').removeClass('active');
-        data.from=new Date().getTime();
-        //data.from=new Date().getTime();
+        data.to=new Date().getTime();
         var dataTime=$(this).parent().addClass('active').attr('data-time');
-        console.log(dataTime);
 
         switch(dataTime){
             case 'day':
-                data.to=data.from+86400000;
+                data.from=data.to-86400000;
                 break;
             case 'week':
+                data.from=data.to-604800000;
                 break;
             case 'month':
+                data.from=data.to-86400000*30;
                 break;
-            case 'null':
+            default :
+                data.from=null;
+                data.to=null;
                 break;
         }
         getDocumentListSize(data);
@@ -46,17 +48,16 @@ $(function(){
     $('.pagination').on('click','a',function(){
         var pageNum=$('.pagination a:last').attr('page');
         data.page=$(this).attr('page');
-        console.log(pageNum);
         page(pageNum,data);
     });
 });
 
 //获取攻略列表
 function getDocumentList(data){
+    $('.strategy-list').empty();
     ajaxRequest('/getDocumentList',data,function(response){
         var strategyNum=response.length;
         if(strategyNum>0){
-            $('.strategy-list').empty();
             for(var i=0;i<strategyNum;i++){
                 $('.strategy-list').append($('#strategy-modal').html());
                 var target=$('.strategy-list-item').eq(i);

@@ -18,7 +18,7 @@ $(function(){
                     if(response.return==200){
                         location.href='home.html';
                     }else{
-                        alert('ÓÃ»§ÕËºÅ»òÃÜÂëÓĞ´íÎó');
+                        alert('ç”¨æˆ·è´¦å·æˆ–å¯†ç æœ‰é”™è¯¯');
                     }
                 },
                 error:function(response){
@@ -34,15 +34,15 @@ function check(){
     var usernameVal=$('input[name=username]').val();
     var passwordVal=$('input[name=password]').val();
     if(!usernameVal||!passwordVal){
-        alert('²»µÃÎª¿Õ');
+        alert('ä¸å¾—ä¸ºç©º');
         return false;
     }
     if(!/^[\w\u4e00-\u9fa5]*$/.test(usernameVal)){
-        alert('ÓÃ»§Ãû¸ñÊ½²»ÕıÈ·');
+        alert('ç”¨æˆ·åæ ¼å¼ä¸æ­£ç¡®');
         return false;
     }
     if(!/^[\w]*$/.test(passwordVal)){
-        alert('ÃÜÂë¸ñÊ½²»ÕıÈ·');
+        alert('å¯†ç æ ¼å¼ä¸æ­£ç¡®');
         return false;
     }
     return true;

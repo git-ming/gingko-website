@@ -8,6 +8,7 @@ $(function(){
         $('.nickName').html(decodeURIComponent(window.username));
         $('.title').on('click','a',function(){
             $('.selectedType').html($(this).html());
+            $('.title li').removeClass('active');
             $(this).parent().addClass('active');
         });
     }else{
