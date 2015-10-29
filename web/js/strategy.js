@@ -1,13 +1,48 @@
 $(function(){
 
-    //获取攻略列表
+//页面初始化
     var data={
         page:1
     };
-    //页面初始化
     getDocumentListSize(data);
 
+    //按作者筛选
+    $('.search').click(function(){
+        var searchVal=$('.searchVal').val()||null;
+        data.author=searchVal;
+        getDocumentListSize(data);
+    });
 
+    //按类型筛选
+    $('.filterByType').on('click','a',function(){
+        $('.filterByType span').removeClass('active');
+        data.type=$(this).parent().addClass('active').attr('data-type');
+        getDocumentListSize(data);
+    });
+
+    //按时间筛选
+    $('.filterByTime').on('click','a',function(){
+        $('.filterByTime span').removeClass('active');
+        data.from=new Date().getTime();
+        //data.from=new Date().getTime();
+        var dataTime=$(this).parent().addClass('active').attr('data-time');
+        console.log(dataTime);
+
+        switch(dataTime){
+            case 'day':
+                data.to=data.from+86400000;
+                break;
+            case 'week':
+                break;
+            case 'month':
+                break;
+            case 'null':
+                break;
+        }
+        getDocumentListSize(data);
+    });
+
+    //分页
     $('.pagination').on('click','a',function(){
         var pageNum=$('.pagination a:last').attr('page');
         data.page=$(this).attr('page');
