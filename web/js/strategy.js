@@ -68,8 +68,7 @@ function getDocumentList(data){
                 var title=decodeURIComponent(response[i].title)||'无标题';
                 var headImg=response[i].headImg||'../images/logo.png';
                 var authorName=response[i].author||'admin';
-                var date=new Date(response[i].time.time)||new Date();
-                var time=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()+'　'+date.getHours()+':'+date.getMinutes();
+                var time=transformDate(response[i].time.time);
                 var watched=response[i].reader||0;
                 var preview=decodeURIComponent(response[i].preview)||'空空如也';
 

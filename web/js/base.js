@@ -70,3 +70,21 @@ function ajaxRequest(url,data,callback){
     });
 }
 
+//转换时间
+function transformDate(time){
+    var date=new Date(time)||new Date();
+    var year=date.getFullYear();
+    var month=date.getMonth()+1;
+    var day=date.getDate();
+    var hour=date.getHours();
+    var minute=date.getMinutes();
+    return year+'-'+month+'-'+day+'　'+hour+':'+minute;
+}
+
+//获取url中的数据
+function getQueryString(name){
+    var reg=new RegExp("(^|&)"+name+"=([^&]*)($|&)","i");
+    var str=document.location.search.substr(1).match(reg);
+    if(str) return str[2];
+    return null;
+}

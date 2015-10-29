@@ -76,3 +76,9 @@
     color:#8b8b8b;
     padding-left:10px;
 }
+.commentsList p{
+    margin:10px 0;
+}
+#commentModal{
+    visibility:hidden;
+}
