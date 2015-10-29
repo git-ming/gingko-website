@@ -13,6 +13,9 @@
     border-bottom:1px solid #ddd;
     overflow:hidden;
 }
+.strategyInfo-header small{
+    padding-left:10px;
+}
 /*文章信息*/
 .content-info{
     float:right;
@@ -25,8 +28,14 @@
 .content-info li i{
     padding-right:5px;
 }
+.strategyInfo-body{
+    padding:10px;
+}
+.strategyInfo-body p{
+    text-indent:2em;
+}
 
-/*评论*/
+/*我的评论*/
 .myComment{
     border-top:2px solid #ddd;
     background-color:#F8F8F8;
@@ -56,4 +65,14 @@
 .myComment .limit{
     float:right;
     color:#999;
+}
+
+
+/*评论列表*/
+.commentsList .reply{
+    text-align:right;
+}
+.commentsList .comment-time{
+    color:#8b8b8b;
+    padding-left:10px;
 }

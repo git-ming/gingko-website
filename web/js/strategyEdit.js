@@ -1,15 +1,16 @@
 /**
  * Created by Administrator on 2015/10/20.
  */
-/**
- * Created by Administrator on 2015/10/20.
- */
+
 $(function(){
     if(window.username&&window.password){
         markdown();
         $('.nickName').html(decodeURIComponent(window.username));
+        $('.title').on('click','a',function(){
+            $('.selectedType').html($(this).html());
+            $(this).parent().addClass('active');
+        });
     }else{
-        alert('ÇëÏÈµÇÂ¼»ò×¢²á');
         location.href='login.html';
     }
 
@@ -57,11 +58,13 @@ function markdown(){
     };
     var editor = new EpicEditor(opts).load();
     var getEditor=editor.getElement('editor').body;
+    $(getEditor).empty();
     $('.submit').click(function () {
         var sendVal=editor.getElement('previewer').body.innerHTML;
         var preview=encodeURIComponent(sendVal.slice(0,99));
         var title=encodeURIComponent($('.blog-title input').val());
-        addDocument(title,encodeURIComponent(sendVal),preview);
+        var type=$('.title .active').attr('data-type');
+        addDocument(type,title,encodeURIComponent(sendVal),preview);
     });
 
     boldText(getEditor);
@@ -109,8 +112,9 @@ function addCode(getEditor){
     });
 }
 
-function addDocument(title,body,preview){
+function addDocument(type,title,body,preview){
     var data={
+        type:type,
         title:title,
         body:body,
         preview:preview.length

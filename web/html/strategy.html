@@ -31,60 +31,52 @@
 <div class="content">
     <div class="content-left">
         <!--搜索框-->
-        <div class="input-group input-group-lg">
-            <input type="text" class="form-control" />
+        <div class=" input-group input-group-lg">
+            <input type="text" class="searchVal form-control" placeholder="按作者或者关键字搜攻略..."/>
             <span class="input-group-btn">
-                <input type="button" class="btn btn-default web-style" value="go" placeholder="搜攻略..."/>
+                <input type="button" class="search btn btn-default web-style" value="go" />
             </span>
         </div>
         <!-- 筛选条件-->
         <ul class="list-group search-condition">
-                <li class="list-group-item">
+                <li class="filterByType list-group-item">
                     <span>类型：</span>
-                    <span class="active"><a href="#">全部</a></span>
-                    <span><a href="#">美食</a></span>
-                    <span><a href="#">学习</a></span>
-                    <span><a href="#">旅行</a></span>
+                    <span  class="active"><a href="#">全部</a></span>
+                    <span  data-type="cate"><a href="#">美食</a></span>
+                    <span  data-type="study"><a href="#">学习</a></span>
+                    <span  data-type="travel"><a href="#">旅行</a></span>
                 </li>
-                <li class="list-group-item">
+                <li class="filterByTime list-group-item">
                     <span>时间：</span>
-                    <span class="active"><a href="#">全部</a></span>
-                    <span><a href="#">一天以内</a></span>
-                    <span><a href="#">一周以内</a></span>
-                    <span><a href="#">一月以内</a></span>
+                    <span data-time="null" class="active"><a href="#">全部</a></span>
+                    <span data-time="day" ><a href="#">一天以内</a></span>
+                    <span data-time="week" ><a href="#">一周以内</a></span>
+                    <span data-time="month" ><a href="#">一月以内</a></span>
                 </li>
         </ul>
         <!--内容列表-->
-        <div class="strategy-list">
-            <div class="strategy-list-header">
-                <div class="strategy-list-sort">
-                    <a href="#">按热度<i class=" icon-arrow-down"></i></a>
-                    <a href="#">最新发表<i class=" icon-arrow-down"></i></a>
-                </div>
-                <ol class="breadcrumb">
-                    <li>一天以内</li>
-                    <li>一天以内</li>
-                    <li>一天以内</li>
-                </ol>
+        <div class="strategy-list-header">
+            <div class="strategy-list-sort">
+                <a href="#">按热度<i class=" icon-arrow-down"></i></a>
+                <a href="#">最新发表<i class=" icon-arrow-down"></i></a>
             </div>
-            <div class="strategy-list-content">
-                <div class="content-header">
-                    <ul class="content-info">
-                        <li><i class="icon-eye-open"></i><span class="watched">99</span></li>
-                        <li><i class="icon-thumbs-up"></i><span class="up">99</span></li>
-                        <li><i class=" icon-comment"></i><span class="comment">99</span></li>
-                    </ul>
-                    <h3><a href="#">【我的间隔年】3.1——最美婺源</a></h3>
-                </div>
-                <ul class="authorInfo">
-                    <li class="author-headImg"><a href="#"><img src="../images/logo.png" alt="作者头像"/></a>&nbsp;&nbsp;</li>
-                    <li>porter &nbsp;&nbsp;|&nbsp;&nbsp;</li>
-                    <li>旅行 &nbsp;&nbsp;|&nbsp;&nbsp;</li>
-                    <li>一周以内</li>
-                </ul>
-                <div class="content-body"></div>
-            </div>
+            <ol class="breadcrumb">
+                <li>一天以内</li>
+                <li>一天以内</li>
+                <li>一天以内</li>
+            </ol>
         </div>
+        <div class="strategy-list">
+
+        </div>
+        <nav>
+            <ul class="pagination">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">上一页</a></li>
+                <li><a href="#">下一页</a></li>
+                <li><a href="#">尾页</a></li>
+            </ul>
+        </nav>
     </div>
     <div class="content-right">
 
@@ -94,23 +86,27 @@
 </div>
 
 <!--文章modal-->
-<div id="strategy-list-content">
-    <div class="content-header">
-        <ul class="content-info">
-            <li><i class="icon-eye-open"></i><span class="watched">99</span></li>
-            <li><i class="icon-thumbs-up"></i><span class="up">99</span></li>
-            <li><i class=" icon-comment"></i><span class="comment">99</span></li>
+<div id="strategy-modal">
+    <div class="strategy-list-item">
+        <div class="content-header">
+            <ul class="content-info">
+                <li><i class="icon-time"></i><span class="time">2015-5-1</span></li>
+                <li><i class="icon-eye-open"></i><span class="watched">99</span></li>
+                <li><i class="icon-thumbs-up"></i><span class="up">99</span></li>
+                <li><i class=" icon-comment"></i><span class="comment">99</span></li>
+            </ul>
+            <h3><a href="#">【我的间隔年】3.1——最美婺源</a></h3>
+        </div>
+        <ul class="authorInfo">
+            <li class="author-headImg"><a href="#"><img src="../images/logo.png" alt="作者头像"/></a>&nbsp;&nbsp;</li>
+            <li><span class="authorName">porter</span> &nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li>旅行 &nbsp;&nbsp;|&nbsp;&nbsp;</li>
+            <li>一周以内</li>
         </ul>
-        <h3><a href="#">【我的间隔年】3.1——最美婺源</a></h3>
+        <div class="content-body"></div>
     </div>
-    <ul class="authorInfo">
-        <li class="author-headImg"><a href="#"><img src="../images/logo.png" alt="作者头像"/></a>&nbsp;&nbsp;</li>
-        <li>porter &nbsp;&nbsp;|&nbsp;&nbsp;</li>
-        <li>旅行 &nbsp;&nbsp;|&nbsp;&nbsp;</li>
-        <li>一周以内</li>
-    </ul>
-    <div class="content-body"></div>
 </div>
+
 
 <script src="../libs/jquery.min.js"></script>
 <script src="../libs/bootstrap.min.js"></script>
