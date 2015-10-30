@@ -53,10 +53,10 @@
     </div>
     <div class="strategyInfo-comments">
         <h3>评论(<span class="comment">99</span>)</h3>
-        <div class="myComment">
+        <div class="myComment" id="myComment">
             <div class="adaptArea">
                 <pre><span></span><p>&nbsp;</p></pre>
-                <textarea maxlength="300"  placeholder="亲，评论几句吧~"></textarea>
+                <textarea maxlength="300"  placeholder="亲，评论几句吧~" required></textarea>
             </div>
             <p>
                 <input type="button" class="submit btn btn-default" value="提交"/>
@@ -66,6 +66,14 @@
         <ul class="commentsList list-group">
 
         </ul>
+        <nav>
+            <ul class="pagination">
+                <li><a href="#">首页</a></li>
+                <li><a href="#">上一页</a></li>
+                <li><a href="#">下一页</a></li>
+                <li><a href="#">尾页</a></li>
+            </ul>
+        </nav>
     </div>
 </div>
 
@@ -76,8 +84,8 @@
             <a class="observer" href="#">author</a>
             <span class="comment-time">2015-6-1</span>
         </div>
-        <p>回复 smlie963：对呢</p>
-        <div class="reply"><a href="#">回复</a></div>
+        <p>这都被你发现了</p>
+        <div class="reply"><a href="#myComment">回复</a></div>
     </li>
 </div>
 
