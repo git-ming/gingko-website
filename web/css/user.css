@@ -1,0 +1,16 @@
+.content{
+    width:1024px;
+    margin:50px auto;
+    padding:20px;
+}
+
+.content-header{
+    padding-bottom:20px;
+}
+.content-header img{
+    width:100px;
+    height:100px;
+}
+.nickName{
+    vertical-align:bottom;
+}

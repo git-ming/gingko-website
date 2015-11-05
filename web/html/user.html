@@ -29,27 +29,35 @@
 </nav>
 <div class="content">
     <div class="content-header" >
-        <img src="../images/headImg.jpg" alt=""/>
-        <h1 ><a href="index.html" class="nickName">昵称</a></h1>
+        <img src="../images/logo.png" alt="用户头像"/>
+        <span class="nickName">昵称</span>
     </div>
-    <ul class="nav nav-tabs">
-        <li role="presentation" class="active"><a href="#" >我的资料</a></li>
-        <li role="presentation" ><a href="#" class="myFocus">我的关系</a></li>
-        <li role="presentation"><a href="#" class="myMessages">我的消息</a></li>
-    </ul>
-    <div class="Focus" style="display:none;">
-        <h3>我关注的人（<span class="focusNum">0</span>）</h3>
-        <ul class="focus-list list-group">
+    <div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#information" aria-controls="information" role="tab" data-toggle="tab">我的资料</a></li>
+            <li role="presentation"><a href="#relation" aria-controls="relation" role="tab" data-toggle="tab">我的关系</a></li>
+            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">我的消息</a></li>
         </ul>
-    </div>
-    <div class="Messages" style="display:none;">
-        <h3>
-            未读通知(<span class="messageNum">0</span>) |
-            <button class="readAll btn btn-default btn-xs">全部标记为已读</button>
-            <button class="delete btn btn-default btn-xs">删除选中消息</button>
-        </h3>
-        <ul class="message-list list-group">
-        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="information">...</div>
+            <div role="tabpanel" class="tab-pane" id="relation">
+                <h3>我关注的人（<span class="focusNum">0</span>）</h3>
+                <ul class="focus-list list-group">
+                </ul>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="messages">
+                <h3>
+                    未读通知(<span class="messageNum">0</span>) |
+                    <button class="readAll btn btn-default btn-xs">全部标记为已读</button>
+                    <button class="delete btn btn-default btn-xs">删除选中消息</button>
+                </h3>
+                <ul class="message-list list-group">
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
