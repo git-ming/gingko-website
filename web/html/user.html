@@ -31,6 +31,10 @@
     <div class="content-header" >
         <img src="../images/logo.png" alt="用户头像"/>
         <span class="nickName">昵称</span>
+        <div class="button-tool">
+            <button class="btn btn-primary">关注</button>
+            <button class="btn btn-default">私信</button>
+        </div>
     </div>
     <div>
         <!-- Nav tabs -->
@@ -44,12 +48,12 @@
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="information">...</div>
             <div role="tabpanel" class="tab-pane" id="relation">
-                <h3>我关注的人（<span class="focusNum">0</span>）</h3>
+                <h3 class="title">我关注的人（<span class="focusNum">0</span>）</h3>
                 <ul class="focus-list list-group">
                 </ul>
             </div>
             <div role="tabpanel" class="tab-pane" id="messages">
-                <h3>
+                <h3 class="title">
                     未读通知(<span class="messageNum">0</span>) |
                     <button class="readAll btn btn-default btn-xs">全部标记为已读</button>
                     <button class="delete btn btn-default btn-xs">删除选中消息</button>
@@ -61,6 +65,7 @@
     </div>
 </div>
 
+<!--消息列表模板-->
 <ul id="message-template" style="display:none;">
     <li class="list-group-item" data-toggle="modal" data-target="#messageModal">
         <input type="checkbox" name="isRead" />
@@ -68,6 +73,12 @@
         <span class="message-content">对不起，系统出错</span>
         <span class="message-author"></span>
         <span class="message-date pull-right"></span>
+    </li>
+</ul>
+
+<!--关注列表模板-->
+<ul id="marked-template" style="display:none;">
+    <li class="list-group-item" data-toggle="modal" data-target="#markModal">
     </li>
 </ul>
 

@@ -4,12 +4,12 @@
 $(function(){
     $('.nickName').html(decodeURIComponent(sessionStorage.username));
     getMessageList();
-
+    getMarkedList();
     //全部标记为已读
     $('.readAll').click(function(){
         var data = JSON.parse(sessionStorage.messageList);
         ajaxHeader('/readAllMessage',data,function(data){
-            $('.message-list li').css('opacity', '0.6');
+            $('.message-list li').css('opacity', '0.6').attr('data-target','');
             $('.messageNum').html('0');
         });
     });
@@ -59,7 +59,7 @@ function getMessageList(){
             messageNo.find('.message-date').html(date);
             messageNo.attr('messageId',newData[i].id);
             if(newData[i].read){
-                messageNo.css('opacity','0.6');
+                messageNo.css('opacity','0.6').attr('data-target','');
             }else{
                 messageNum+=1;
             }
@@ -71,11 +71,6 @@ function getMessageList(){
 
 //获取关注列表
 function getMarkedList(){
-    $('.nav-tabs li').removeClass('active');
-    $('.myFocus').parent().addClass('active');
-    $('.Focus ul').empty();
-    $('.Focus').show();
-    $('.Messages').hide();
     ajaxHeader('/getMarkedList',null,function(response){
         $('.focusNum').html(response.length);
         for(var i=0;i<response.length;i++){
@@ -94,7 +89,7 @@ function readMessage(_this){
     };
     ajaxHeader('/readMessage',data,function(data){
         var messageNum=$('.messageNum');
-        $(_this).css('opacity','0.6');
+        $(_this).css('opacity','0.6').attr('data-target','');
     });
 }
 
@@ -122,4 +117,20 @@ function getMessage(id){
         $(info).find('.modal-title').html(data.type+'<span class="label label-default">by'+data.author+'</span>');
         $(info).find('.modal-body').html('<p>'+message+'</p>');
     });
+}
+
+//遍历消息列表
+function traverseMessage(){
+    var messageData=JSON.parse(sessionStorage.messageList);
+    var messageNum=0;
+    for(var i=0;i<messageData.length;i++){
+        /*var isSelected=messageData.eq(i).find('input').prop('checked');
+        if(isSelected){
+            messageData.eq(i).remove();
+        }*/
+        if(!messageData[i].read){
+            messageNum+=1;
+        }
+    }
+    $('.messageNum').html(messageNum);
 }
