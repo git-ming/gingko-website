@@ -7,8 +7,8 @@ $(function(){
 
     //全部标记为已读
     $('.readAll').click(function(){
-        var data = localStorage.getItem('readAllArray');
-        ajaxHeaderByArray('/readAllMessage',data,function(data){
+        var data = JSON.parse(sessionStorage.messageList);
+        ajaxHeader('/readAllMessage',data,function(data){
             $('.message-list li').css('opacity', '0.6');
             $('.messageNum').html('0');
         });
@@ -17,8 +17,10 @@ $(function(){
     //标记已读
     $('.message-list').on('click','li',function(){
         var _this=$(this);
-        readMessage(_this);
-        getMessage($(this).attr('messageId'));
+        if($(this).css('opacity')==1){
+            readMessage(_this);
+            getMessage($(this).attr('messageId'));
+        }
     }).on('click','input',function(event){   //选中
         event.stopPropagation();
     });
@@ -26,13 +28,12 @@ $(function(){
     $('.delete').click(function(){
         var selectArr=[];
         var messageLi=$('.message-list li');
-        var length=messageLi.length;
-        for(var i=0;i<length;i++){
+        for(var i=0;i<messageLi.length;i++){
             var isSelected=messageLi.eq(i).find('input').prop('checked');
             if(isSelected){
-                selectArr.push(JSON.stringify({
+                selectArr.push({
                     id:messageLi.eq(i).attr('messageId')
-                }));
+                });
             }
         }
         removeMessage(selectArr);
@@ -42,18 +43,12 @@ $(function(){
 
 //获取消息列表
 function getMessageList(){
-   /* $('.nav-tabs li').removeClass('active');
-    $('.myMessages').parent().addClass('active');
-    $('.Messages ul').empty();*/
     ajaxHeader('/getMessageList',null,function(data){
         var messageNum=0;
         var array=[];
         var newData=rankByTime(data);
         for(var i=0;i<newData.length;i++){
             var content=decodeURIComponent(newData[i].preview);
-            console.log(newData[i].preview);
-            console.log(content);
-            console.log(decodeURIComponent(content));
             var author=decodeURIComponent(newData[i].author);
             var date=transformDate(newData[i].time.time);
             $('.message-list').prepend($('#message-template').html());
@@ -63,15 +58,13 @@ function getMessageList(){
             messageNo.find('.message-author').html('by'+author);
             messageNo.find('.message-date').html(date);
             messageNo.attr('messageId',newData[i].id);
-            array.push(JSON.stringify({id:newData[i].id}));
             if(newData[i].read){
                 messageNo.css('opacity','0.6');
             }else{
                 messageNum+=1;
             }
-            console.log(messageNum);
         }
-        localStorage.setItem('readAllArray',array);
+        sessionStorage.messageList=JSON.stringify(newData);
         $('.messageNum').html(messageNum);
     });
 }
@@ -107,7 +100,7 @@ function readMessage(_this){
 
 //删除消息
 function removeMessage(sendData){
-    ajaxHeaderByArray('/removeAllMessage',sendData,function(data){
+    ajaxHeader('/removeAllMessage',sendData,function(data){
         var messageLi=$('.message-list li');
         var length=messageLi.length;
         for(var i=0;i<length;i++){
