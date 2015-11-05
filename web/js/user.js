@@ -42,17 +42,18 @@ $(function(){
 
 //获取消息列表
 function getMessageList(){
-    $('.nav-tabs li').removeClass('active');
+   /* $('.nav-tabs li').removeClass('active');
     $('.myMessages').parent().addClass('active');
-    $('.Focus').hide();
-    $('.Messages ul').empty();
-    $('.Messages').show();
+    $('.Messages ul').empty();*/
     ajaxHeader('/getMessageList',null,function(data){
         var messageNum=0;
         var array=[];
         var newData=rankByTime(data);
         for(var i=0;i<newData.length;i++){
             var content=decodeURIComponent(newData[i].preview);
+            console.log(newData[i].preview);
+            console.log(content);
+            console.log(decodeURIComponent(content));
             var author=decodeURIComponent(newData[i].author);
             var date=transformDate(newData[i].time.time);
             $('.message-list').prepend($('#message-template').html());

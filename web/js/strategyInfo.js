@@ -13,15 +13,15 @@ $(function(){
     });
 
     $('.myComment .submit').click(function(){
-        var comment=encodeURIComponent($('.myComment textarea').val());
+        var target=$('.myComment textarea');
+        var comment=encodeURIComponent(target.val());
         if(comment){
-            var data={
-                id:getQueryString('id'),
-                reply:comment
-            };
-            ajaxHeader('/reply',data,function(response){
-                location.reload();
-            });
+            var aim=target.attr('data-aim');
+            if(aim){
+                var preview=comment.substr(0,50);
+                sendMessage(aim,comment,preview.length);
+            }
+            reply(comment);
         }else{
             alert('不得为空');
         }
@@ -38,7 +38,7 @@ $(function(){
     //回复别人的评论
     $('.commentsList').on('click','.reply a',function(){
         var aim=$(this).parent().parent().find('.observer').html();
-        $('.adaptArea textarea').val('回复'+aim+':');
+        $('.adaptArea textarea').val('回复'+aim+':').attr('data-aim',aim);
     });
 });
 
@@ -49,10 +49,15 @@ function getDocument(){
     };
     ajaxRequest('/getDocument',data,function(response){
         var date=transformDate(response.time.$date);
-        var commentLen=response.reply?response.reply.length:0;
-        var pageNum=Math.ceil(response.reply.length/10);   //评论页数
+        var replyData=[];
+        var commentLen=0;
+        var pageNum=0;   //评论页数
         var pageNo=1;
-        var replyData=response.reply;
+        if(response.reply){
+            replyData=response.reply;
+            commentLen=response.reply.length;
+            pageNum=Math.ceil(commentLen/10);
+        }
         sessionStorage.replyData=JSON.stringify(replyData);
         var title=decodeURIComponent(response.title)||'无标题';
         var body=decodeURIComponent(response.body);
@@ -63,7 +68,6 @@ function getDocument(){
         $('.date').html(date);
         $('.comment').html(commentLen);
         $('.watched').html(response.reader);
-
         page(pageNum,pageNo,replyData);
     });
 }
@@ -88,7 +92,7 @@ function getCommentsByPage(data){
 function page(pageNum,pageNo,replyData){
     pageNum=parseInt(pageNum);
     pageNo=parseInt(pageNo);
-    if(pageNum==1){
+    if(pageNum<=1){
         $('.pagination').empty();
     }else{
         $('.pagination').empty()
@@ -132,6 +136,16 @@ function sendMessage(aim,message,preview){
         preview:preview.length
     };
     ajaxHeader('/sendMessage',data,function(response){
-        alert('发送成功');
+
+    });
+}
+
+function reply(comment){
+    var data={
+        id:getQueryString('id'),
+        reply:comment
+    };
+    ajaxHeader('/reply',data,function(response){
+        location.reload();
     });
 }
