@@ -13,6 +13,17 @@
         date2 (. (. o2 object) get "time")]
     (if (. date1 after date2) -1 (if (. date2 after date1) 1 0))))
 
+(defn sendAimList [aimList page manager event]
+  (let [onePageSize (. (. ConstConfig getConfig) getConst "blog page size")
+        left (* (- page 1) onePageSize)
+        right (if (> (+ left onePageSize) (. aimList size)) (. aimList size) (+ left onePageSize))]
+    (if (<= left right) (do (. manager addSuccessMessage event (. aimList subList left right)) true)
+      false)))
+
+(defn sendAimListSize [aimList onePageSize manager event]
+  (let [pageSize (max 1 (+ (int (/ (count aimList) onePageSize)) (if (= 0 (rem (count aimList) onePageSize)) 0 1)))]
+    (. manager addSuccessMessage event (str "{\"return\":" pageSize "}")) true))
+
 (defn sendDocumentList [manager event message from to page]
   (let [aimList (sort document-compare (vec (. (new BlogCollection) findDocumentListData message from to)))
         ans (new LinkedList)]
@@ -29,17 +40,12 @@
                     "reader" (. object getInteger "reader" 0)
                     "preview" preview}]
         (. ans add nowMap)))
-    (let [onePageSize (. (. ConstConfig getConfig) getConst "blog page size")
-          left (* (- page 1) onePageSize)
-          right (if (> (+ left onePageSize) (. ans size)) (. ans size) (+ left onePageSize))]
-      (if (<= left right) (do (. manager addSuccessMessage event (. ans subList left right)) true)
-        false))))
+    (sendAimList ans page manager event)))
 
 (defn sendDocumentListSize [manager event message from to]
   (let [onePageSize (. (. ConstConfig getConfig) getConst "blog page size")
-        aimList (vec (. (new BlogCollection) findDocumentListData message from to))
-        pageSize (max 1 (+ (int (/ (count aimList) onePageSize)) (if (= 0 (rem (count aimList) onePageSize)) 0 1)))]
-    (do (. manager addSuccessMessage event (str "{\"return\":" pageSize "}"))) true))
+        aimList (vec (. (new BlogCollection) findDocumentListData message from to))]
+    (sendAimListSize aimList onePageSize manager event)))
 
 (defn documentNotFoundMessage [manager event returnCodeConfig]
   (let [object {"return" (. returnCodeConfig getCode "not found")}]
@@ -81,13 +87,30 @@
                   (. (. document object) getString "author") username (str "reply: " reply) (new Date) "system" 100))
               true)))))))
 
+(defn getReply[documentID page manager event returnCodeConfig]
+  (documentNotFoundMessage manager event returnCodeConfig)
+  (if (or (nil? documentID) (nil? page)) false
+    (let [data (. (new BlogCollection) getDocumentData documentID)]
+      (if (nil? data) false
+        (let [object (. (. data object) get "reply")]
+          (sendAimList object (. Integer valueOf page) manager event))))))
+
+(defn getReplySize [documentID manager event returnCodeConfig]
+  (documentNotFoundMessage manager event returnCodeConfig)
+  (if (nil? documentID) false
+    (let [data (. (new BlogCollection) getDocumentData documentID)]
+      (if (nil? data) false
+        (let [object (. data object)]
+          (sendAimListSize (. object get "reply") manager event))))))
+
 (defn getDocument [id manager event returnCodeConfig]
   (documentNotFoundMessage manager event returnCodeConfig)
   (if (nil? id) false
     (let [data (. (new BlogCollection) getDocumentData id)]
       (if (nil? data) false
-        (let [object (. (. data object) toJson)]
-          (. manager addSuccessMessage event object) true)))))
+        (let [object (. data object)
+              message (do (. object toJson))]
+          (. manager addSuccessMessage event message) true)))))
 
 (defn addReader [id]
   (let [data (. (new BlogCollection) getDocument id)]
@@ -102,8 +125,8 @@
       (if (not= author "null") (. document append "author" author))
       (if (not= type "null") (. document append "type" type))
       (let [dateFormat (new SimpleDateFormat "yyyy-MM-dd HH:mm:ss")]
-        (let [fromDate (if (not= from "null") (. dateFormat parse from) (. dateFormat parse "1917-01-01 00:00:00"))
-              toDate (if (not= from "null") (. dateFormat parse to) (new Date))]
+        (let [fromDate (if (not= from "null") (new Date (. Long valueOf from)) (new Date 0))
+              toDate (if (not= from "null") (new Date (. Long valueOf to)) (new Date))]
           (sendDocumentList manager event document fromDate toDate (. Integer valueOf page)))))))
 
 (defn getDocumentListSize [author type from to manager event]
@@ -112,8 +135,8 @@
       (if (not= author "null") (. document append "author" author))
       (if (not= type "null") (. document append "type" type))
       (let [dateFormat (new SimpleDateFormat "yyyy-MM-dd HH:mm:ss")]
-        (let [fromDate (if (not= from "null") (. dateFormat parse from) (. dateFormat parse "1917-01-01 00:00:00"))
-              toDate (if (not= from "null") (. dateFormat parse to) (new Date))]
+        (let [fromDate (if (not= from "null") (new Date (. Long valueOf from)) (new Date 0))
+              toDate (if (not= from "null") (new Date (. Long valueOf to)) (new Date))]
           (sendDocumentListSize manager event document fromDate toDate))))))
 
 
@@ -123,3 +146,5 @@
 (. ManagerLogic put "control.BlogManager$addReader" addReader 1)
 (. ManagerLogic put "control.BlogManager$getDocumentList" getDocumentList 7)
 (. ManagerLogic put "control.BlogManager$getDocumentListSize" getDocumentListSize 6)
+(. ManagerLogic put "control.BlogManager$getReply" getReply 5)
+(. ManagerLogic put "control.BlogManager$getReplySize" getReplySize 4)

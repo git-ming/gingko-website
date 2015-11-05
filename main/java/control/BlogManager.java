@@ -37,6 +37,27 @@ public class BlogManager extends Manager {
         sendEvent.submit();
     }
 
+    public void getReply(String documentID, String page) {
+        SendEvent sendEvent = new SendEvent() {
+            @Override
+            public boolean run() throws Exception {
+                return (boolean) ManagerLogic.invoke(this.getClojureName(), documentID, page, sendManager, this, returnCodeConfig);
+            }
+        };
+        sendManager.addFailMessage(sendEvent);
+        sendEvent.submit();
+    }
+
+    public void getReplySize(String documentID) {
+        SendEvent sendEvent = new SendEvent() {
+            @Override
+            public boolean run() throws Exception {
+                return (boolean) ManagerLogic.invoke(this.getClojureName(), documentID, sendManager, this, returnCodeConfig);
+            }
+        };
+        sendEvent.submit();
+    }
+
     public void getDocument(String id) {
         new SendEvent() {
             @Override
