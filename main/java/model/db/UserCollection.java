@@ -21,6 +21,9 @@ public class UserCollection extends BlogDBCollection {
         data.put("username", username);
         data.put("password", password);
         data.put("message num", 0);
+        data.put("tel", "");
+        data.put("age", -1);
+        data.put("sex", 0);
         this.insert(new Document(data));
         unlockCollection();
     }

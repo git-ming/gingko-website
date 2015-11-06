@@ -54,6 +54,21 @@
         (. object remove "password") (. object remove "_id")
         (. manager addSuccessMessage event object) true))))
 
+(defn checkUsername [username]
+  (if (nil? username) false
+    (let [userCollection (new UserCollection)]
+      (nil? (. userCollection getUserData username)))))
+
+(defn setUserMessage[username image newPassword tel age sex]
+  (if (or (nil? image) (nil? newPassword) (nil? tel) (nil? age) (nil? sex)) false
+    (let [data (. (new UserCollection) getUser username)
+          object (. data object)]
+      (. object put "password" newPassword)
+      (. object put "tel" tel)
+      (. object put "age" (. Integer valueOf age))
+      (. object put "sex" (. Integer valueOf sex))
+      true)))
+
 
 (. ManagerLogic put "control.UserManager$loginUser" loginUser 2)
 (. ManagerLogic put "control.UserManager$register" register 2)
@@ -61,3 +76,5 @@
 (. ManagerLogic put "control.UserManager$changeUserAccess" changeUserAccess 5)
 (. ManagerLogic put "control.UserManager$getUserInfo" getUserInfo 3)
 (. ManagerLogic put "control.UserManager$getOtherUserInfo" getUserInfo 3)
+(. ManagerLogic put "control.UserManager$checkUsername" checkUsername 1)
+(. ManagerLogic put "control.UserManager$setUserMessage" setUserMessage 6)

@@ -18,6 +18,20 @@
             <data>aimUser</data>
         </method>
     </solver>
+    <solver name="check username" url="/checkUsername" manager="control.UserManager" access="false">
+        <method name="checkUsername">
+            <data>name</data>
+        </method>
+    </solver>
+    <solver name="set user message" url="/setUserMessage" manager="control.UserManager" access="true">
+        <method name="setUserMessage">
+            <data>image</data>
+            <data>password</data>
+            <data default="">tel</data>
+            <data default="-1">age</data>
+            <data default="0">sex</data>
+        </method>
+    </solver>
 
     <solver name="mark" url="/mark" manager="control.MarkManager" access="true">
         <method name="markUser">
@@ -90,6 +104,22 @@
     </solver>
     <solver name="get reply size" url="/getReplySize" manager="control.BlogManager" access="false">
         <method name="getReplySize">
+            <data>id</data>
+        </method>
+    </solver>
+
+    <solver name="zan" url="/zan" manager="control.ZanManager" access="true">
+        <method name="zan">
+            <data>id</data>
+        </method>
+    </solver>
+    <solver name="no zan" url="/noZan" manager="control.ZanManager" access="true">
+        <method name="zan">
+            <data>id</data>
+        </method>
+    </solver>
+    <solver name="is zan" url="/isZan" manager="control.ZanManager" access="true">
+        <method name="zan">
             <data>id</data>
         </method>
     </solver>

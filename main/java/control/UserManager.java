@@ -35,6 +35,17 @@ public class UserManager extends Manager {
         sendEvent.submit();
     }
 
+    public void checkUsername(String username) {
+        SendEvent sendEvent = new SendEvent() {
+            @Override
+            public boolean run() throws Exception {
+                return (boolean) ManagerLogic.invoke(this.getClojureName(), username);
+            }
+        };
+        sendManager.addSendMessage(sendEvent);
+        sendEvent.submit();
+    }
+
     public void getUserInfo(String username, String password) {
         SendEvent sendEvent = new SendEvent() {
             @Override
@@ -65,6 +76,18 @@ public class UserManager extends Manager {
             public boolean run() throws Exception {
                 return accessConfig.isAccept(username, password, this)
                         && (boolean) ManagerLogic.invoke(this.getClojureName(), username, password);
+            }
+        };
+        sendManager.addSendMessage(sendEvent);
+        sendEvent.submit();
+    }
+
+    public void setUserMessage(String username, String password, String image, String newPassword, String tel, String age, String sex) {
+        SendEvent sendEvent = new SendEvent() {
+            @Override
+            public boolean run() throws Exception {
+                return accessConfig.isAccept(username, password, this)
+                        && (boolean) ManagerLogic.invoke(this.getClojureName(), username, image, newPassword, tel, age, sex);
             }
         };
         sendManager.addSendMessage(sendEvent);

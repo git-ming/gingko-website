@@ -5,6 +5,7 @@
         <collection type="model.db.BlogCollection">blog</collection>
         <collection type="model.db.MessageCollection">msg</collection>
         <collection type="model.db.MarkUserCollection">mark</collection>
+        <collection type="model.db.ZanCollection">zan</collection>
     </db>
     <db name="image" type="file">
         <collection type="model.db.ImageCollection">image</collection>

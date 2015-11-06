@@ -144,6 +144,20 @@ public class UserManagerTest {
     }
 
     @Test
+    public void testSetUserMessage() throws InterruptedException {
+        register("test user");
+        Counter counter = new Counter(1);
+        UserManagerNoSend userManager = new UserManagerNoSend(counter);
+        userManager.setUserMessage("test user", "pass", "image", "np", "123", "1", "1");
+        while (counter.get() != 0) {
+            Thread.sleep(500);
+        }
+        UserCollection userCollection = new UserCollection();
+        DBTable.DBData data = userCollection.getUserData("test user");
+        assertEquals("np", data.object.get("password"));
+    }
+
+    @Test
     public void testGetUserInfo() throws InterruptedException {
         register("test user");
         Counter counter = new Counter(1);
