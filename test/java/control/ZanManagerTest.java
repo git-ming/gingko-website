@@ -68,7 +68,7 @@ public class ZanManagerTest {
         noZan("test user", id);
 
         ZanCollection zanCollection = new ZanCollection();
-        assertEquals(1, zanCollection.findZanListData(new Document().append("username", "test user").append("document", id)).size());
+        assertEquals(0, zanCollection.findZanListData(new Document().append("username", "test user").append("document", id)).size());
     }
 
     @Test
