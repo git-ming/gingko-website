@@ -1,14 +1,12 @@
 /**
  * Created by Administrator on 2015/10/20.
  */
-window.username=window.sessionStorage.getItem('username');
-window.password=window.sessionStorage.getItem('password');
+
 
 $(function(){
 //    判断当前用户已登录
-    console.log(window.username&&window.password);
-    if(window.username&&window.password){
-        console.log(1);
+    console.log(sessionStorage.username&&sessionStorage.password);
+    if(sessionStorage.username&&sessionStorage.password){
         $('.user-info')
             .html('<li><a href="#"><img src="../images/logo.png"><span class="badge">99</span></a>' +
                     '</li><li class="logout"><a href="login.html">退出</a></li>')
@@ -30,15 +28,15 @@ function ajaxHeader(url,data,callback){
         dataType:'json',
         data:JSON.stringify(data),
         beforeSend:function(XML){
-            XML.setRequestHeader('username',window.username);
-            XML.setRequestHeader('password',window.password);
+            XML.setRequestHeader('username',sessionStorage.username);
+            XML.setRequestHeader('password',sessionStorage.password);
         },
         success:function(response){
             if(response.return==200){
                 callback(response.data);
             }else if(response.return==404){
                 alert('找不到页面');
-            }else if(response.return=403){
+            }else if(response.return==403){
                 alert('操作有误');
             }
         },

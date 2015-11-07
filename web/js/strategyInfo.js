@@ -2,9 +2,24 @@
  * Created by Administrator on 2015/10/26.
  */
 $(function(){
+
+    window.pageId=getQueryString('id');
+    //閱讀人數加一
+    if(!sessionStorage.visit){
+        addDocumentReader();
+        sessionStorage.visit=true;
+    }
+
     //获取文章信息
-    getDocument();
+    getDocument(window.pageId);
     window.replyArr=[];
+
+    //点赞
+    $('.up').parent().click(function(){
+        agree();
+    });
+
+
     //评论
     $('.adaptArea textarea').keyup(function(){
         var textVal=$('.adaptArea textarea').val();
@@ -12,6 +27,7 @@ $(function(){
         $('.adaptArea span').html(textVal);
     });
 
+    //提交评论
     $('.myComment .submit').click(function(){
         var target=$('.myComment textarea');
         var comment=encodeURIComponent(target.val());
@@ -43,9 +59,9 @@ $(function(){
 });
 
 //获取文章信息
-function getDocument(){
+function getDocument(pageId){
     var data={
-        id:getQueryString('id')
+        id:pageId
     };
     ajaxRequest('/getDocument',data,function(response){
         var date=transformDate(response.time.$date);
@@ -140,12 +156,54 @@ function sendMessage(aim,message,preview){
     });
 }
 
+//回复
 function reply(comment){
     var data={
-        id:getQueryString('id'),
+        id:window.pageId,
         reply:comment
     };
     ajaxHeader('/reply',data,function(response){
         location.reload();
+    });
+}
+
+//阅读人数加一
+function addDocumentReader(){
+    var data={
+        id:window.pageId
+    };
+    ajaxRequest('/addDocumentReader',data,function(response){
+
+    });
+}
+
+
+//点赞
+function agree(){
+    var data={
+        id:window.pageId
+    };
+    ajaxHeader('/zan',data,function(response){
+
+    });
+}
+
+//点赞
+function disagree(){
+    var data={
+        id:window.pageId
+    };
+    ajaxHeader('/noZan',data,function(response){
+
+    });
+}
+
+//点赞
+function isAgreed(){
+    var data={
+        id:window.pageId
+    };
+    ajaxHeader('/isZan',data,function(response){
+
     });
 }

@@ -3,9 +3,9 @@
  */
 
 $(function(){
-    if(window.username&&window.password){
+    if(sessionStorage.username&&sessionStorage.password){
         markdown();
-        $('.nickName').html(decodeURIComponent(window.username));
+        $('.nickName').html(decodeURIComponent(sessionStorage.username));
         $('.title').on('click','a',function(){
             $('.selectedType').html($(this).html());
             $('.title li').removeClass('active');
@@ -160,8 +160,8 @@ function uploadImg(file,getEditor) {
         }
     }
     xhr.open('POST', '/uploadImage');
-    xhr.setRequestHeader('username',window.username);
-    xhr.setRequestHeader('password',window.password);
+    xhr.setRequestHeader('username',sessionStorage.username);
+    xhr.setRequestHeader('password',sessionStorage.password);
     xhr.setRequestHeader('File-Type',fileType);
     xhr.send(file);
     xhr.onreadystatechange = function(e) {
