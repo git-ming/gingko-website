@@ -8,6 +8,13 @@ li{
 a:hover{
     text-decoration: none;
 }
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+
 /*顶部栏用户信息*/
 .user-info a{
     padding:5px !important;

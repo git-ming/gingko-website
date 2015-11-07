@@ -29,14 +29,42 @@
 </nav>
 <div class="content">
     <div class="content-header">
-        <img src="../images/headImg.jpg" alt="用户头像"/>
-        <span class="nickName">昵称</span>
-        <div class="button-tool">
-            <button class="btn btn-primary">关注</button>
-            <button class="btn btn-default">私信</button>
+        <div class="main">
+            <div class="header-left">
+                <div class="headImg">
+                    <img src="../images/headImg.jpg" alt="用户头像"/>
+                </div>
+                <div class="header-info">
+                    <h3 class="nickName">昵称</h3>
+                    <div class="button-tool">
+                        <button class="btn btn-primary">关注</button>
+                        <button class="btn btn-default">私信</button>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <dl class="fans fl">
+                    <dt>0</dt>
+                    <dd>粉丝</dd>
+                </dl>
+                <dl class="focus fr">
+                    <dt>0</dt>
+                    <dd>关注</dd>
+                </dl>
+            </div>
         </div>
     </div>
+    <div class="content-body">
+        <div class="body-left fl">
+            <div class="timeLine-hd"></div>
+            <ul class="timeLine">
+                <li class="timeLine-item">
 
+                </li>
+            </ul>
+        </div>
+        <div class="body-right fr"></div>
+    </div>
 </div>
 
 <script src="../libs/jquery.min.js"></script>

@@ -1,3 +1,69 @@
+body{
+    background-color: #f4f4f4;
+}
+/*********头部************/
 .content-header{
+    height:273px;
     background-image: url('../images/head_bg1.jpg');
+    padding:20px;
+}
+.main{
+    width:976px;
+    margin:20px auto;
+    clear:both;
+}
+.header-left{
+    float:left;
+    display:inline;
+}
+.header-right{
+    float:right;
+    display:inline;
+}
+
+.header-left .headImg{
+    width:150px;
+    float:left;
+}
+.header-left .headImg img{
+    width:150px;
+    height:150px;
+    border:8px solid #fff;
+    border-radius:50%;
+}
+.header-left .header-info{
+    margin-left:170px;
+}
+
+.header-right{
+    margin-top:20px;
+}
+.header-right dl{
+    width:50px;
+    text-align:center;
+}
+.header-right dt{
+    font-size:36px;
+    color:#66ccff;
+}
+.header-right .focus{
+    border-left:1px solid #999;
+}
+
+/*主体内容*/
+.content-body{
+    width:967px;
+    margin:0 auto;
+    padding:20px;
+}
+.body-left{
+    width:726px;
+}
+.body-right{
+    width:210px;
+}
+.timeLine-hd{
+    width:44px;
+    height:44px;
+    background:url('../images/time-lime-ico.png') -28px -19px no-repeat;
 }
