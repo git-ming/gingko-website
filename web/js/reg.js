@@ -8,10 +8,10 @@ $(function(){
         formObj.passwordVal=$('input[name=password]').val();
         formObj.confirmPassVal=$('input[name=confirmPass]').val();
         if(check(formObj)){
-            var username=decodeURIComponent(formObj.usernameVal);
-            var password=decodeURIComponent(formObj.passwordVal);
-            register(username,password);
-            //checkUsername(formObj);
+            /*var username=encodeURIComponent(formObj.usernameVal);
+            var password=encodeURIComponent(formObj.passwordVal);
+            register(username,password);*/
+            checkUsername(formObj);
         }
     });
 });
@@ -50,7 +50,7 @@ function checkUsername(formObj){
     var data={
         username:username
     };
-    ajaxHeader('/checkUsername',data,function(){
+    ajaxRequest('/checkUsername',data,function(){
         register(username,password);
     });
 }
@@ -61,6 +61,6 @@ function register(username,password){
         "password":password
     };
     ajaxRequest('/register',data,function(response){
-        location.href='login.html';
+        //location.href='login.html';
     });
 }

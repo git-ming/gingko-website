@@ -59,9 +59,14 @@ function markdown(){
     };
     var editor = new EpicEditor(opts).load();
     var getEditor=editor.getElement('editor').body;
+    var getPreviewer=editor.getElement('previewer').body;
     $(getEditor).empty();
+
     $('.submit').click(function () {
-        var sendVal=editor.getElement('previewer').body.innerHTML;
+        editor.reflow();
+        var sendVal=$(getPreviewer).html();
+        console.log(sendVal);
+        console.log($(getEditor).html());
         var preview=encodeURIComponent(sendVal.slice(0,99));
         var title=encodeURIComponent($('.blog-title input').val());
         var type=$('.title .active').attr('data-type');

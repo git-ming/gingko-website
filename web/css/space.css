@@ -66,4 +66,62 @@ body{
     width:44px;
     height:44px;
     background:url('../images/time-lime-ico.png') -28px -19px no-repeat;
+    margin-left:30px;
+}
+
+.timeLine{
+    position:relative;
+    background:url('../images/time-line-line.jpg') 50px 0 repeat-y;
+}
+.timeLine .timeLine-date{
+    position:absolute;
+    left:-18px;
+    top:8px;
+    color:#ccc;
+    width:50px;
+    text-align:center;
+}
+.timeLine .timeLine-date dt{
+    font-size:20px;
+}
+.timeLine .timeLine-date dd{
+    font-size:14px;
+}
+.timeLine .timeLine-ico{
+    position:absolute;
+    top:13px;
+    left:33px;
+    width:37px;
+    height:37px;
+    background:#f4f4f4 url('../images/time-lime-ico.png') -30px -183px no-repeat;
+}
+.timeLine .timeLine-trangle{
+    position:absolute;
+    top:25px;
+    left:75px;
+    width:20px;
+    height:15px;
+    background: url('../images/time-lime-ico.png') -126px -24px no-repeat;
+}
+.timeLine .timeLine-content{
+    margin-left:45px;
+    width:600px;
+    border:1px solid #ececec;
+    background-color:#fff;
+    border-radius:5px;
+    box-shadow:2px 2px 2px #e3e3e3;
+    padding:20px;
+    overflow:hidden;
+}
+
+.timeLine-content .content-info{
+    float:right;
+}
+.timeLine-content .content-info li{
+    float:left;
+    padding:0 10px;
+    color:#999;
+}
+.timeLine-content .content-info li i{
+    padding-right:5px;
 }
