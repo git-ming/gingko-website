@@ -15,6 +15,7 @@ $(function(){
     window.replyArr=[];
 
     //点赞
+    isAgreed();
     $('.up').parent().click(function(){
         agree();
         //isAgreed();
