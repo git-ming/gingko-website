@@ -44,6 +44,22 @@
         (. ans add object)))
     (. manager addSuccessMessage event ans) true))
 
+(defn getAllMessage[username password aimUser manager event]
+  (let [aimList (vec (. (new MessageCollection) findMessageData (new Document "username" aimUser)))
+        ans (new LinkedList)]
+    (dotimes [i (count aimList)]
+      (let [now (nth aimList i)
+            object (. now object)]
+        (. object put "id" (str (. object get "_id")))
+        (. object remove "_id")
+        (let [body (. object get "message")
+              previewDefault (. (. ConstConfig getConfig) getConst "preview default")
+              preview (if (> (count body) (. object getInteger "preview" previewDefault)) (subs body 0 (. object getInteger "preview" previewDefault)) body)]
+          (. object remove "message")
+          (. object put "preview" preview))
+        (. ans add object)))
+    (. manager addSuccessMessage event (. ans size)) true))
+
 (defn removeMessage[username password id]
   (if (nil? id) false
     (let [data (. (new MessageCollection) getMessage id)]

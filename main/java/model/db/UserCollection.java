@@ -20,7 +20,6 @@ public class UserCollection extends BlogDBCollection {
         Map<String, Object> data = new HashMap<>();
         data.put("username", username);
         data.put("password", password);
-        data.put("message num", 0);
         data.put("tel", "");
         data.put("age", -1);
         data.put("sex", 0);
