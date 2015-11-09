@@ -37,8 +37,8 @@
                 <div class="header-info">
                     <h3 class="nickName">昵称</h3>
                     <div class="button-tool">
-                        <button class="btn btn-primary">关注</button>
-                        <button class="btn btn-default">私信</button>
+                        <button class="mark btn btn-primary">关注</button>
+                        <button class="chat btn btn-default" data-toggle="modal" data-target="#chatModal">私信</button>
                     </div>
                 </div>
             </div>
@@ -82,6 +82,49 @@
             </ul>
         </div>
         <div class="body-right fr"></div>
+    </div>
+</div>
+
+<!--时间线模板-->
+<ul id="timeLine">
+    <li class="timeLine-item">
+        <dl class="timeLine-date">
+            <dt>11/09</dt>
+            <dd>2015</dd>
+        </dl>
+        <div class="timeLine-ico"></div>
+        <div class="timeLine-trangle"></div>
+        <div class="timeLine-content">
+            <p class="label">TA发表了攻略</p>
+            <h3><a href="#">迷失在天堂，毛里求斯海陆空全方位体验</a></h3>
+            <p class="timeLine-intro">2014年5月，和风哥成为合法夫妻。 2014年9月，开始穿着婚纱去旅行的第一站----马尔代夫。2015年2月，实现穿着婚纱去旅行的第二站----泰国。 2015年9月，人生...</p>
+            <div class="pic">
+                <img src="../images/travel01.jpg" alt="图片展示"/>
+            </div>
+            <ul class="content-info">
+                <li><i class="icon-eye-open"></i><span class="watched">99</span></li>
+                <li><i class="icon-thumbs-up"></i><span class="up">99</span></li>
+                <li><i class=" icon-comment"></i><span class="comment">99</span></li>
+            </ul>
+        </div>
+    </li>
+</ul>
+
+<!--模态框-->
+<div class="modal fade" id="chatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="ModalLabel">使用说明</h2>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="confirm btn btn-primary" data-dismiss="modal">确认</button>
+            </div>
+        </div>
     </div>
 </div>
 

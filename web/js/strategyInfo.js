@@ -16,8 +16,8 @@ $(function(){
 
     //点赞
     $('.up').parent().click(function(){
-        //agree();
-        isAgreed();
+        agree();
+        //isAgreed();
     });
 
 
@@ -80,7 +80,7 @@ function getDocument(pageId){
         var body=decodeURIComponent(response.body);
         var author=decodeURIComponent(response.author);
         $('.title').html(title);
-        $('.author').html(author);
+        $('.author').html(author).attr('href','space.html?user='+author);
         $('.strategyInfo-body').html(body);
         $('.date').html(date);
         $('.comment').html(commentLen);
