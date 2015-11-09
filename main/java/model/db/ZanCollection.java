@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
  */
 public class ZanCollection extends BlogDBCollection {
 
-    public void addZanDocuemnt(String username, String documentID) {
+    public void addZanDocument(String username, String documentID) {
         this.lockCollection();
         Document document = new Document();
         document.put("username", username);
@@ -24,7 +24,7 @@ public class ZanCollection extends BlogDBCollection {
     public DBData getZan(String username, String documentID) {
         lockCollection();
         DBData ans;
-        List<Map<String, Object>> iterable = collection.find(new Document("username", username));
+        List<Map<String, Object>> iterable = collection.find(new Document("username", username).append("document", documentID));
         if (iterable.size() == 0) {
             ans = null;
         } else {
