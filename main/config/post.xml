@@ -124,6 +124,9 @@
         </method>
     </solver>
 
+    <solver name="get messages size" url="/getMessageSize" manager="control.MessageManager" access="true">
+        <method name="getMessageSize"/>
+    </solver>
     <solver name="get message list" url="/getMessageList" manager="control.MessageManager" access="true">
         <method name="getAllMessage"/>
     </solver>

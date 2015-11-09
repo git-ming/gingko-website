@@ -67,6 +67,18 @@ public class MessageManager extends Manager {
         sendEvent.submit();
     }
 
+    public void getMessageSize(String username, String password) {
+        SendEvent sendEvent = new SendEvent() {
+            @Override
+            public boolean run() throws Exception {
+                return accessConfig.isAccept(username, password, this)
+                        && (boolean) ManagerLogic.invoke(this.getClojureName(), username, password, username, sendManager, this);
+            }
+        };
+        sendManager.addFailMessage(sendEvent);
+        sendEvent.submit();
+    }
+
     public void getAllMessage(String username, String password) {
         SendEvent sendEvent = new SendEvent() {
             @Override
