@@ -44,7 +44,7 @@
         (. ans add object)))
     (. manager addSuccessMessage event ans) true))
 
-(defn getAllMessage[username password aimUser manager event]
+(defn getMessageSize[username password aimUser manager event]
   (let [aimList (vec (. (new MessageCollection) findMessageData (new Document "username" aimUser)))
         ans (new LinkedList)]
     (dotimes [i (count aimList)]
@@ -58,7 +58,7 @@
           (. object remove "message")
           (. object put "preview" preview))
         (. ans add object)))
-    (. manager addSuccessMessage event (. ans size)) true))
+    (. manager addSuccessMessage event (str "{\"return\":" (. ans size) "}")) true))
 
 (defn removeMessage[username password id]
   (if (nil? id) false
@@ -71,6 +71,7 @@
 (. ManagerLogic put "control.MessageManager$readMessage" readMessage 3)
 (. ManagerLogic put "control.MessageManager$getAllMessage" getAllMessage 5)
 (. ManagerLogic put "control.MessageManager$getUserAllMessage" getAllMessage 5)
+(. ManagerLogic put "control.MessageManager$getMessageSize" getMessageSize 5)
 (. ManagerLogic put "control.MessageManager$removeMessage" removeMessage 3)
 (. ManagerLogic put "control.MessageManager$readAllMessage" readMessage 3)
 (. ManagerLogic put "control.MessageManager$removeAllMessage" removeMessage 3)
