@@ -61,6 +61,6 @@ function register(username,password){
         "password":password
     };
     ajaxRequest('/register',data,function(response){
-        //location.href='login.html';
+        location.href='login.html';
     });
 }

@@ -5,12 +5,9 @@
 
 $(function(){
 //    判断当前用户已登录
-    console.log(sessionStorage.username&&sessionStorage.password);
     if(sessionStorage.username&&sessionStorage.password){
-        $('.user-info')
-            .html('<li><a href="#"><img src="../images/logo.png"><span class="badge">99</span></a>' +
-                    '</li><li class="logout"><a href="login.html">退出</a></li>')
-            .css('position','relative');
+        userInfo();
+        getMessageSize();
     }else{
         $('.user-info').html('<li><a  href="login.html">登录</a></li><li><a href="reg.html">注册</a></li>');
     }
@@ -20,6 +17,8 @@ $(function(){
         sessionStorage.clear();
     });
 });
+
+
 //头部需要加username的ajax
 function ajaxHeader(url,data,callback){
     $.ajax({
@@ -103,4 +102,26 @@ function rankByTime(data){
         newData.push(data[rank]);
     }
     return newData;
+}
+
+//获取当前用户信息
+function userInfo(){
+    ajaxHeader('/userInfo',null,function(response){
+        var messageNum=parseInt(response['message num'])||0;
+        var headImgPath=response.headImg||'../images/logo.png';
+        $('.user-info')
+            .html('<li><a href="user.html"><img src="'+headImgPath+'"><span class="badge">'+messageNum+'</span></a>' +
+            '</li><li class="logout"><a href="login.html">退出</a></li>')
+            .css('position','relative');
+        if(messageNum<=0){
+            $('.user-info span').empty();
+        }
+    });
+}
+
+//获取用户未读消息数量
+function getMessageSize(){
+    ajaxHeader('/getMessageSize',null,function(){
+
+    });
 }
