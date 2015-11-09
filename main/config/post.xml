@@ -20,7 +20,7 @@
     </solver>
     <solver name="check username" url="/checkUsername" manager="control.UserManager" access="false">
         <method name="checkUsername">
-            <data>name</data>
+            <data>username</data>
         </method>
     </solver>
     <solver name="set user message" url="/setUserMessage" manager="control.UserManager" access="true">
