@@ -16,7 +16,8 @@ $(function(){
 
     //点赞
     $('.up').parent().click(function(){
-        agree();
+        //agree();
+        isAgreed();
     });
 
 
@@ -156,7 +157,7 @@ function sendMessage(aim,message,preview){
     });
 }
 
-//回复
+//评论
 function reply(comment){
     var data={
         id:window.pageId,

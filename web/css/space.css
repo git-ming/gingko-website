@@ -104,7 +104,7 @@ body{
     background: url('../images/time-lime-ico.png') -126px -24px no-repeat;
 }
 .timeLine .timeLine-content{
-    margin-left:45px;
+    margin-left:85px;
     width:600px;
     border:1px solid #ececec;
     background-color:#fff;
@@ -114,7 +114,16 @@ body{
     overflow:hidden;
 }
 
+.timeLine-content .label{
+    font-size:14px;
+    color:#666;
+    font-family: "Microsoft YaHei";
+}
+.timeLine-content .pic img{
+    width:100%;
+}
 .timeLine-content .content-info{
+    margin-top:10px;
     float:right;
 }
 .timeLine-content .content-info li{
