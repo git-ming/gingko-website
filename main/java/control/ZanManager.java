@@ -41,10 +41,10 @@ public class ZanManager extends Manager {
             @Override
             public boolean run() throws Exception {
                 return accessConfig.isAccept(username, password, this)
-                        && (boolean) ManagerLogic.invoke(this.getClojureName(), username, id);
+                        && (boolean) ManagerLogic.invoke(this.getClojureName(), username, id, sendManager, this);
             }
         };
-        sendManager.addSendMessage(sendEvent);
+        sendManager.addFailMessage(sendEvent);
         sendEvent.submit();
     }
 }

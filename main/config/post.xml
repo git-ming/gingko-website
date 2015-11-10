@@ -114,12 +114,12 @@
         </method>
     </solver>
     <solver name="no zan" url="/noZan" manager="control.ZanManager" access="true">
-        <method name="zan">
+        <method name="noZan">
             <data>id</data>
         </method>
     </solver>
     <solver name="is zan" url="/isZan" manager="control.ZanManager" access="true">
-        <method name="zan">
+        <method name="isZan">
             <data>id</data>
         </method>
     </solver>
