@@ -20,6 +20,7 @@ public class BlogCollection extends BlogDBCollection {
         document.put("time", date);
         document.put("type", type);
         document.put("reader", 0);
+        document.put("zan", 0);
         document.put("preview", preview);
         this.insert(document);
         unlockCollection();
@@ -42,7 +43,7 @@ public class BlogCollection extends BlogDBCollection {
         if (!cursor.hasNext()) return null;
 
         Map<String, Object> document = cursor.next();
-        return addDocumentToUsing(document);
+        return  addDocumentToUsing(document);
     }
 
     public DBData getDocumentData(String id) {

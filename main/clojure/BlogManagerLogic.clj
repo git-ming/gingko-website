@@ -38,6 +38,7 @@
                     "author" (. object get "author"),
                     "time" (. object get "time"),
                     "reader" (. object getInteger "reader" 0)
+                    "zan" (. object getInteger "zan" 0)
                     "preview" preview}]
         (. ans add nowMap)))
     (sendAimList ans page manager event)))

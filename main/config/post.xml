@@ -48,11 +48,15 @@
             <data>aimUser</data>
         </method>
     </solver>
-    <solver name="get marked list" url="/getMarkedList" manager="control.MarkManager" access="true">
-        <method name="getMarkedList"/>
+    <solver name="get marked list" url="/getMarkedList" manager="control.MarkManager" access="false">
+        <method name="getMarkedList">
+            <data>username</data>
+        </method>
     </solver>
-    <solver name="get marked me list" url="/getMarkedMeList" manager="control.MarkManager" access="true">
-        <method name="getMarkedMeList"/>
+    <solver name="get marked me list" url="/getMarkedMeList" manager="control.MarkManager" access="false">
+        <method name="getMarkedMeList">
+            <data>username</data>
+        </method>
     </solver>
 
     <solver name="add document" url="/addDocument" manager="control.BlogManager" access="true">
