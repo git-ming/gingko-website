@@ -18,6 +18,7 @@ public class UserCollection extends BlogDBCollection {
     public void registerUser(String username, String password) {
         lockCollection();
         Map<String, Object> data = new HashMap<>();
+        data.put("head", "");
         data.put("username", username);
         data.put("password", password);
         data.put("tel", "");

@@ -63,6 +63,7 @@
   (if (or (nil? image) (nil? newPassword) (nil? tel) (nil? age) (nil? sex)) false
     (let [data (. (new UserCollection) getUser username)
           object (. data object)]
+      (. object put "head" image)
       (. object put "password" newPassword)
       (. object put "tel" tel)
       (. object put "age" (. Integer valueOf age))
