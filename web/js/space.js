@@ -5,7 +5,7 @@ $(function(){
     var aimUser=getQueryString('user');
     otherUserInfo(aimUser);
 
-    //
+    //关注
     isMarked(aimUser);
     $('.focus').click(function(){
         if($(this).html()=='关注'){
@@ -15,6 +15,13 @@ $(function(){
         }
     });
 
+    //私信
+    $('.aim').html(aimUser);
+    $('.submit').click(function(){
+        var message=$('.chatMessage').val();
+        var preview=message.substr(0,50);
+        sendMessage(aimUser,decodeURIComponent(message),preview);
+    });
     getDocumentList(aimUser);
 });
 //获取任意用户消息
@@ -39,6 +46,7 @@ function getDocumentList(aimUser){
     };
     ajaxRequest('/getDocumentList',data,function(response){
         var strategyNum=response.length;
+        console.log(strategyNum);
         if(strategyNum>0){
             for(var i=0;i<strategyNum;i++){
                 $('.timeLine').append($('#timeLine').html());
@@ -48,23 +56,25 @@ function getDocumentList(aimUser){
                 var title=decodeURIComponent(response[i].title)||'无标题';
                 var headImg=response[i].headImg||'../images/logo.png';
                 var authorName=decodeURIComponent(response[i].author)||'admin';
-                var time=transformDate(response[i].time.time);
+                var date=new Date(response[i].time.time)||new Date();
+                var year=date.getFullYear();
+                var month=date.getMonth()+1;
+                var day=date.getDate();
                 var watched=response[i].reader||0;
                 var preview=decodeURIComponent(response[i].preview)||'空空如也';
                 var author=response[i].author||null;
 
                 /*赋值*/
+                $('.timeLine-date dt').html(month+'/'+day);
+                $('.timeLine-date dd').html(year);
                 $(target).find('h3 a').html(title).attr('href','strategyInfo.html?id='+strategyId);
-                $(target).find('.author-headImg a').attr('href','space.html?user='+author);
-                $(target).find('.author-headImg img').attr('src',headImg);
-                $(target).find('.authorName').html(authorName);
-                $(target).find('.time').html(time);
                 $(target).find('.watched').html(watched);
-                $(target).find('.content-body').html(preview);
+                $(target).find('.timeLine-intro').html(preview);
 
             }
         }else{
-            $('.strategy-list').append('没有内容');
+            /*$('.timeLine').append($('#timeLine').html());
+            $('.timeLine li')*/
         }
 
     });
@@ -105,3 +115,14 @@ function unMark(aimUser){
     });
 }
 
+//发送信息
+function sendMessage(aim,message,preview){
+    var data={
+        aim:aim,
+        message:message,
+        preview:preview.length
+    };
+    ajaxHeader('/sendMessage',data,function(response){
+        alert('发送成功');
+    });
+}

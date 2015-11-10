@@ -17,7 +17,11 @@ $(function(){
     //点赞
     isAgreed();
     $('.up').parent().click(function(){
-        agree();
+        if($(this).hasClass('active')){   //已关注
+            disagree();
+        }else{
+            agree();
+        }
         //isAgreed();
     });
 
@@ -32,12 +36,12 @@ $(function(){
     //提交评论
     $('.myComment .submit').click(function(){
         var target=$('.myComment textarea');
-        var comment=encodeURIComponent(target.val());
+        var comment=target.val();
         if(comment){
             var aim=target.attr('data-aim');
             if(aim){
                 var preview=comment.substr(0,50);
-                sendMessage(aim,comment,preview.length);
+                sendMessage(aim,decodeURIComponent(comment),preview.length);
             }
             reply(comment);
         }else{
@@ -186,17 +190,19 @@ function agree(){
         id:window.pageId
     };
     ajaxHeader('/zan',data,function(response){
-
+        var zanNum=parseInt($('.up').html());
+        $('.up').html(zanNum+1).parent().css('color','green').addClass('active');
     });
 }
 
-//点赞
+//取消点赞
 function disagree(){
     var data={
         id:window.pageId
     };
     ajaxHeader('/noZan',data,function(response){
-
+        var zanNum=parseInt($('.up').html());
+        $('.up').html(zanNum-1).parent().css('color','#999').removeClass('active');
     });
 }
 
@@ -206,6 +212,10 @@ function isAgreed(){
         id:window.pageId
     };
     ajaxHeader('/isZan',data,function(response){
-
+        if(response.return){  //已关注
+            $('.up').parent().css('color','green').addClass('active');
+        }else{                //未关注
+            $('.up').parent().css('color','#999');
+        }
     });
 }

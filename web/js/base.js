@@ -35,6 +35,8 @@ function ajaxHeader(url,data,callback){
             XML.setRequestHeader('password',sessionStorage.password);
         },
         success:function(response){
+            console.log(response);
+            console.log(response.data);
             if(response.return==200){
                 callback(response.data);
             }else if(response.return==404){

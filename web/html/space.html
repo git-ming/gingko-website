@@ -86,7 +86,7 @@
 </div>
 
 <!--时间线模板-->
-<ul id="timeLine">
+<ul id="timeLine" style="display:none;">
     <li class="timeLine-item">
         <dl class="timeLine-date">
             <dt>11/09</dt>
@@ -116,13 +116,13 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h2 class="modal-title" id="ModalLabel">使用说明</h2>
+                <h3 class="modal-title" id="ModalLabel">发送给<span class="aim">admin</span></h3>
             </div>
             <div class="modal-body">
-
+                <textarea class="chatMessage form-control" rows="5"></textarea>
             </div>
             <div class="modal-footer">
-                <button type="button" class="confirm btn btn-primary" data-dismiss="modal">确认</button>
+                <button type="button" class="submit btn btn-primary" data-dismiss="modal">发送</button>
             </div>
         </div>
     </div>

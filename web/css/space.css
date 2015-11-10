@@ -70,11 +70,12 @@ body{
 }
 
 .timeLine{
-    position:relative;
+
     background:url('../images/time-line-line.jpg') 50px 0 repeat-y;
 }
 
 .timeLine .timeLine-item{
+    position:relative;
     margin-bottom:20px;
 }
 .timeLine .timeLine-date{
