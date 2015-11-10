@@ -48,24 +48,22 @@ public class MarkManager extends Manager {
         sendEvent.submit();
     }
 
-    public void getMarkedList(String username, String password) {
+    public void getMarkedList(String username) {
         SendEvent sendEvent = new SendEvent() {
             @Override
             public boolean run() throws Exception {
-                return accessConfig.isAccept(username, password, this)
-                        && (boolean) ManagerLogic.invoke(this.getClojureName(), "from", username, sendManager, this);
+                return (boolean) ManagerLogic.invoke(this.getClojureName(), "from", username, sendManager, this);
             }
         };
         sendManager.addFailMessage(sendEvent);
         sendEvent.submit();
     }
 
-    public void getMarkedMeList(String username, String password) {
+    public void getMarkedMeList(String username) {
         SendEvent sendEvent = new SendEvent() {
             @Override
             public boolean run() throws Exception {
-                return accessConfig.isAccept(username, password, this)
-                        && (boolean) ManagerLogic.invoke(this.getClojureName(), "to", username, sendManager, this);
+                return  (boolean) ManagerLogic.invoke(this.getClojureName(), "to", username, sendManager, this);
             }
         };
         sendManager.addFailMessage(sendEvent);
