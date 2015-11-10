@@ -26,18 +26,18 @@
           ans (not (nil? (. markUserCollection getMarkData username aimUser)))]
       (. manager addSuccessMessage event (str "{\"return\":" ans "}")) true)))
 
-(defn getMarkedList [key username manager event]
+(defn getMarkedList [key returnCode username manager event]
   (let [aimList (vec (. (new MarkUserCollection) find (new Document key username)))
         ans (new LinkedList)]
     (dotimes [i (count aimList)]
       (let [now (nth aimList i)
             object (. now object)
-            nowMap {"to" (. object get "to")}]
+            nowMap {returnCode (. object get returnCode)}]
         (. ans add nowMap)))
     (. manager addSuccessMessage event ans) true))
 
 (. ManagerLogic put "control.MarkManager$markUser" markUser 3)
 (. ManagerLogic put "control.MarkManager$unMarkUser" unMarkUser 3)
 (. ManagerLogic put "control.MarkManager$isMarked" isMarked 5)
-(. ManagerLogic put "control.MarkManager$getMarkedList" getMarkedList 4)
-(. ManagerLogic put "control.MarkManager$getMarkedMeList" getMarkedList 4)
+(. ManagerLogic put "control.MarkManager$getMarkedList" getMarkedList 5)
+(. ManagerLogic put "control.MarkManager$getMarkedMeList" getMarkedList 5)

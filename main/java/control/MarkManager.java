@@ -52,7 +52,7 @@ public class MarkManager extends Manager {
         SendEvent sendEvent = new SendEvent() {
             @Override
             public boolean run() throws Exception {
-                return (boolean) ManagerLogic.invoke(this.getClojureName(), "from", username, sendManager, this);
+                return (boolean) ManagerLogic.invoke(this.getClojureName(), "from", "to", username, sendManager, this);
             }
         };
         sendManager.addFailMessage(sendEvent);
@@ -63,7 +63,7 @@ public class MarkManager extends Manager {
         SendEvent sendEvent = new SendEvent() {
             @Override
             public boolean run() throws Exception {
-                return  (boolean) ManagerLogic.invoke(this.getClojureName(), "to", username, sendManager, this);
+                return  (boolean) ManagerLogic.invoke(this.getClojureName(), "to", "from", username, sendManager, this);
             }
         };
         sendManager.addFailMessage(sendEvent);
