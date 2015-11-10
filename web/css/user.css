@@ -17,3 +17,25 @@
 .button-tool{
     padding-top:20px;
 }
+
+.user-form{
+    margin-top:20px;
+    padding:20px;
+    overflow:hidden;
+    border:1px solid #ddd;
+    border-top:2px solid #66ccff;
+    background:#f9fcfe;
+}
+.user-form .userImg{
+    float:left;
+    width:150px;
+    height:150px;
+}
+.user-form .userImg img{
+    width:150px;
+    height:150px;
+    border:5px solid #e9eff3;
+}
+.user-form .userInfo{
+    margin-left:150px;
+}

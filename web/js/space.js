@@ -26,10 +26,13 @@ $(function(){
     $('.submit').click(function(){
         var message=$('.chatMessage').val();
         var preview=message.substr(0,50);
-        sendMessage(aimUser,decodeURIComponent(message),preview);
+        sendMessage(aimUser,encodeURIComponent(message),preview*9);
     });
     getDocumentList(aimUser);
 });
+
+
+
 //获取任意用户消息
 function otherUserInfo(aimUser){
     var data={

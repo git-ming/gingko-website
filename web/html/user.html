@@ -34,17 +34,33 @@
     <div>
         <!-- Nav tabs -->
         <ul class="nav nav-tabs" role="tablist">
-            <li role="presentation" class="active"><a href="#information" aria-controls="information" role="tab" data-toggle="tab">我的资料</a></li>
-            <li role="presentation"><a href="#relation" aria-controls="relation" role="tab" data-toggle="tab">我的关系</a></li>
-            <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">我的消息</a></li>
+            <li class="information active" role="presentation">
+                <a href="#information" aria-controls="information" role="tab" data-toggle="tab">我的资料</a>
+            </li>
+            <li class="relation" role="presentation">
+                <a href="#relation" aria-controls="relation" role="tab" data-toggle="tab">我的关系</a>
+            </li>
+            <li class="messages" role="presentation">
+                <a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">我的消息</a>
+            </li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="information">
-                <div></div>
-                <img src="../images/logo.png" alt="用户头像"/>
-                <span class="nickName">昵称</span>
+                <div class="user-form">
+                    <div class="userImg">
+                        <img src="../images/logo.png" alt="用户头像"/>
+                    </div>
+                    <ul class="userInfo">
+                        <li class="nickName ">昵称</li>
+                        <li class=" ">性别</li>
+                        <li class="nickName ">年龄</li>
+                        <li class="nickName">手机号</li>
+                        <li class="nickName">邮箱号</li>
+                    </ul>
+                </div>
+
             </div>
             <div role="tabpanel" class="tab-pane" id="relation">
                 <h3 class="title-blue">我关注的人（<span class="focusNum">0</span>）</h3>
@@ -81,7 +97,7 @@
     </li>
 </ul>
 
-<!-- Modal -->
+<!-- 模态框Modal -->
 <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
