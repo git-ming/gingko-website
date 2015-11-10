@@ -11,6 +11,7 @@ body{
     width:976px;
     margin:20px auto;
     clear:both;
+    overflow:hidden;
 }
 .header-left{
     float:left;
@@ -20,6 +21,7 @@ body{
     float:right;
     display:inline;
 }
+
 
 .header-left .headImg{
     width:150px;
@@ -52,35 +54,35 @@ body{
 
 /*Ö÷ÌåÄÚÈÝ*/
 .content-body{
-    width:967px;
+    width:1024px;
     margin:0 auto;
     padding:20px;
+    overflow:hidden;
 }
 .body-left{
     width:726px;
 }
 .body-right{
-    width:210px;
+    width:200px;
 }
 .timeLine-hd{
     width:44px;
     height:44px;
     background:url('../images/time-lime-ico.png') -28px -19px no-repeat;
-    margin-left:30px;
+    margin-left:50px;
 }
+
 
 .timeLine{
-
-    background:url('../images/time-line-line.jpg') 50px 0 repeat-y;
+    background:url('../images/time-line-line.jpg') 70px 0 repeat-y;
 }
-
 .timeLine .timeLine-item{
     position:relative;
     margin-bottom:20px;
 }
 .timeLine .timeLine-date{
     position:absolute;
-    left:-18px;
+    left:2px;
     top:8px;
     color:#ccc;
     width:50px;
@@ -95,7 +97,7 @@ body{
 .timeLine .timeLine-ico{
     position:absolute;
     top:13px;
-    left:33px;
+    left:53px;
     width:37px;
     height:37px;
     background:#f4f4f4 url('../images/time-lime-ico.png') -30px -183px no-repeat;
@@ -103,13 +105,13 @@ body{
 .timeLine .timeLine-trangle{
     position:absolute;
     top:25px;
-    left:75px;
+    left:95px;
     width:20px;
     height:15px;
     background: url('../images/time-lime-ico.png') -126px -24px no-repeat;
 }
 .timeLine .timeLine-content{
-    margin-left:85px;
+    margin-left:105px;
     width:600px;
     border:1px solid #ececec;
     background-color:#fff;
@@ -138,4 +140,36 @@ body{
 }
 .timeLine-content .content-info li i{
     padding-right:5px;
+}
+
+
+.body-right .fansNum,.body-right .focusNum{
+    float:right;
+    margin-top:-5px;
+    font-size:20px;
+    color:#999;
+}
+.body-right .header h3{
+    font-size:20px;
+    color:#333;
+}
+.body-right .list{
+    overflow:hidden;
+}
+.list .item{
+    float:left;
+    width:50px;
+    padding:5px;
+}
+.list .item img{
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+}
+.list .item dt{
+    width:40px;
+    height:40px;
+}
+.list .item dd{
+    text-align:center;
 }

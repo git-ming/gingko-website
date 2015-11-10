@@ -44,7 +44,6 @@ $(function(){
 //获取消息列表
 function getMessageList(){
     ajaxHeader('/getMessageList',null,function(data){
-        console.log(data);
         var messageNum=0;
         var array=[];
         var newData=rankByTime(data);

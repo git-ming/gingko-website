@@ -2,16 +2,22 @@
  * Created by Administrator on 2015/11/5.
  */
 $(function(){
-    var aimUser=getQueryString('user');
+    var aimUser=getQueryString('user');//转码后的
     otherUserInfo(aimUser);
 
     //关注
-    isMarked(aimUser);
-    $('.focus').click(function(){
+    getMarkedList(aimUser);
+    getMarkedMeList(aimUser);
+    if(aimUser==sessionStorage.username){
+        $('.button-tool').empty();
+    }else{
+        isMarked(aimUser);
+    }
+    $('.mark').click(function(){
         if($(this).html()=='关注'){
-            mark(encodeURIComponent(aimUser));
+            mark(aimUser);
         }else if($(this).html()=='取消关注'){
-            unMark(encodeURIComponent(aimUser));
+            unMark(aimUser);
         }
     });
 
@@ -50,19 +56,16 @@ function getDocumentList(aimUser){
         if(strategyNum>0){
             for(var i=0;i<strategyNum;i++){
                 $('.timeLine').append($('#timeLine').html());
-                var target=$('.timeLine li').eq(i);
+                var target=$('.timeLine>li').eq(i);
                 /*判空过滤*/
                 var strategyId=response[i].id||0;
                 var title=decodeURIComponent(response[i].title)||'无标题';
-                var headImg=response[i].headImg||'../images/logo.png';
-                var authorName=decodeURIComponent(response[i].author)||'admin';
                 var date=new Date(response[i].time.time)||new Date();
                 var year=date.getFullYear();
                 var month=date.getMonth()+1;
                 var day=date.getDate();
                 var watched=response[i].reader||0;
                 var preview=decodeURIComponent(response[i].preview)||'空空如也';
-                var author=response[i].author||null;
 
                 /*赋值*/
                 $('.timeLine-date dt').html(month+'/'+day);
@@ -70,7 +73,6 @@ function getDocumentList(aimUser){
                 $(target).find('h3 a').html(title).attr('href','strategyInfo.html?id='+strategyId);
                 $(target).find('.watched').html(watched);
                 $(target).find('.timeLine-intro').html(preview);
-
             }
         }else{
             /*$('.timeLine').append($('#timeLine').html());
@@ -124,5 +126,49 @@ function sendMessage(aim,message,preview){
     };
     ajaxHeader('/sendMessage',data,function(response){
         alert('发送成功');
+    });
+}
+
+//关注其他用户列表
+function getMarkedList(aimUser){
+    var data={
+        username:aimUser
+    };
+    ajaxRequest('/getMarkedList',data,function(response){
+        $('.focus dt').html(response.length);
+        $('.focusNum').html(response.length);
+        $('.focus-box .list').empty();
+        for(var i=0;i<response.length;i++){
+            $('.focus-box .list').append($('#list').html());
+            var target=$('.focus-box .list>a').eq(i);
+            var name=decodeURIComponent(response[i].to);
+            var headImgPath=response[i].img||'../images/logo.png';
+
+            $(target).attr('href','space.html?user='+name);
+            $(target).find('img').attr('src',headImgPath);
+            $(target).find('.fansName').html(name);
+        }
+    });
+}
+
+//被其他用户关注列表
+function getMarkedMeList(aimUser){
+    var data={
+        username:aimUser
+    };
+    ajaxRequest('/getMarkedMeList',data,function(response){
+        $('.fans dt').html(response.length);
+        $('.fansNum').html(response.length);
+        $('.fans-box .list').empty();
+        for(var i=0;i<response.length;i++){
+            $('.fans-box .list').append($('#list').html());
+            var target=$('.fans-box .list>a').eq(i);
+            var name=decodeURIComponent(response[i].from);
+            var headImgPath=response[i].img||'../images/logo.png';
+
+            $(target).attr('href','space.html?user='+name);
+            $(target).find('img').attr('src',headImgPath);
+            $(target).find('.fansName').html(name);
+        }
     });
 }
