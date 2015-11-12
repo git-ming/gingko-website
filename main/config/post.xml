@@ -128,6 +128,9 @@
         </method>
     </solver>
 
+    <solver name="get unread message size" url="/getUnreadMessageSize" manager="control.MessageManager" access="true">
+        <method name="getUnreadMessageSize"/>
+    </solver>
     <solver name="get messages size" url="/getMessageSize" manager="control.MessageManager" access="true">
         <method name="getMessageSize"/>
     </solver>
