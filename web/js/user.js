@@ -16,7 +16,7 @@ $(function(){
         $('.readAll').click(function(){
             var data = JSON.parse(sessionStorage.messageList);
             ajaxHeader('/readAllMessage',data,function(data){
-                $('.message-list li').css('opacity', '0.6').attr('data-target','');
+                $('.message-list li').css('opacity', '0.6');
                 $('.messageNum').html('0');
             });
         });
@@ -72,7 +72,7 @@ function getMessageList(){
 
 
             if(newData[i].read){
-                messageNo.css('opacity','0.6').attr('data-target','');
+                messageNo.css('opacity','0.6');
             }else{
                 messageNum+=1;
             }

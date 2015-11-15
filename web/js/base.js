@@ -11,7 +11,7 @@ $(function(){
             '</li><li class="logout"><a href="login.html">退出</a></li>')
             .css('position','relative');
         userInfo();
-        getMessageSize();
+        getUnreadMessageSize();
     }else{
         $('.user-info').html('<li><a  href="login.html">登录</a></li><li><a href="reg.html">注册</a></li>');
     }
@@ -117,8 +117,8 @@ function userInfo(){
 }
 
 //获取用户未读消息数量
-function getMessageSize(){
-    ajaxHeader('/getMessageSize',null,function(response){
+function getUnreadMessageSize(){
+    ajaxHeader('/getUnreadMessageSize',null,function(response){
         var messageNum=parseInt(response.return)||0;
         if(messageNum<=0){
             $('.user-info span').empty();

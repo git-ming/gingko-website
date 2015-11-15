@@ -107,6 +107,7 @@ function mark(aimUser){
     };
     ajaxHeader('/mark',data,function(){
         $('.mark').html('取消关注');
+        getMarkedMeList(aimUser);
     });
 }
 
@@ -117,6 +118,7 @@ function unMark(aimUser){
     };
     ajaxHeader('/unMark',data,function(){
         $('.mark').html('关注');
+        getMarkedMeList(aimUser);
     });
 }
 
