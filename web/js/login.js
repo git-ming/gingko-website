@@ -4,8 +4,6 @@
 $(function(){
     $('.submit').click(function(){
         if(check()){
-            window.sessionStorage.setItem('username',encodeURIComponent($('input[name=username]').val()));
-            window.sessionStorage.setItem('password',encodeURIComponent($('input[name=password]').val()));
             $.ajax({
                 url:'/login',
                 type:'POST',
@@ -16,6 +14,8 @@ $(function(){
                 },
                 success:function(response){
                     if(response.return==200){
+                        window.sessionStorage.setItem('username',encodeURIComponent($('input[name=username]').val()));
+                        window.sessionStorage.setItem('password',encodeURIComponent($('input[name=password]').val()));
                         location.href='home.html';
                     }else{
                         alert('用户账号或密码有错误');

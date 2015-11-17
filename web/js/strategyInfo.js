@@ -4,12 +4,13 @@
 $(function(){
 
     window.pageId=getQueryString('id');
+    visistArr=sessionStorage.visit||[];
     //閱讀人數加一
-    if(!sessionStorage.visit){
+    if(visistArr.indexOf(window.pageId)==-1){
         addDocumentReader();
-        sessionStorage.visit=true;
+        visistArr.push(window.pageId);  //有问题
     }
-
+    sessionStorage.visit=visistArr;
     //获取文章信息
     getDocument(window.pageId);
     window.replyArr=[];
@@ -41,9 +42,9 @@ $(function(){
             var aim=target.attr('data-aim');
             if(aim){
                 var preview=comment.substr(0,50);
-                sendMessage(aim,decodeURIComponent(comment),preview.length);
+                sendMessage(aim,encodeURIComponent(comment),preview.length);
             }
-            reply(comment);
+            reply(encodeURIComponent(comment));
         }else{
             alert('不得为空');
         }
@@ -164,12 +165,13 @@ function sendMessage(aim,message,preview){
 
 //评论
 function reply(comment){
+    console.log(comment);
     var data={
         id:window.pageId,
         reply:comment
     };
     ajaxHeader('/reply',data,function(response){
-        location.reload();
+        //location.reload();
     });
 }
 
